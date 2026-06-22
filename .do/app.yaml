@@ -15,11 +15,9 @@ static_sites:
     source_dir: /public
     index_document: index.html
     error_document: 404.html
-# Custom domain — add AFTER realpalestine.com is registered and its nameservers
-# point at DigitalOcean (ns1/ns2/ns3.digitalocean.com). Then re-run the update
-# command above with this block uncommented.
-# domains:
-#   - domain: realpalestine.com
-#     type: PRIMARY
-#   - domain: www.realpalestine.com
-#     type: ALIAS
+# DNS stays at GoDaddy: a CNAME points www.realpalestine.com at this app, and the
+# bare realpalestine.com is forwarded to https://www.realpalestine.com at GoDaddy.
+# App Platform provisions HTTPS for www automatically once the CNAME resolves.
+domains:
+  - domain: www.realpalestine.com
+    type: PRIMARY

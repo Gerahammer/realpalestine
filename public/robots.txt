@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://realpalestine.com/sitemap.xml
+Sitemap: https://www.realpalestine.com/sitemap.xml
