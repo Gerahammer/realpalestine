@@ -120,6 +120,9 @@
   .band-line{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,3.4vw,34px);color:#fff;max-width:24ch;line-height:1.18;letter-spacing:-.01em;}
   .band .cred{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;color:var(--muted-light);margin-top:14px;text-transform:uppercase;}
   .band .cred a{color:var(--muted-light);text-decoration:underline;text-underline-offset:2px;}
+  .band .bandline{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(22px,3.4vw,34px);color:#fff;max-width:24ch;line-height:1.18;letter-spacing:-.01em;}
+  .band .bandcred{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;color:var(--muted-light);margin-top:14px;text-transform:uppercase;}
+  .band .bandcred a{color:var(--muted-light);text-decoration:underline;text-underline-offset:2px;}
   section{padding:78px 0;}
   .section-head{max-width:var(--read);margin-bottom:42px;}
   .section-head h2{font-size:clamp(28px,4vw,42px);margin-top:16px;}
@@ -325,6 +328,14 @@
   .wc-legacy b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-text);font-weight:500;}
   .wc-legacy span{font-family:"Fraunces",serif;font-size:16.5px;font-style:italic;color:var(--ink);line-height:1.4;}
   [dir="rtl"] .wc-legacy{border-left:0;}
+  .wc-flags{display:flex;align-items:center;gap:10px;margin-top:13px;flex-wrap:wrap;}
+  .wc-flags .wf-row{display:inline-flex;gap:4px;}
+  .wf{width:24px;height:16px;border-radius:2px;overflow:hidden;box-shadow:0 0 0 1px rgba(14,27,46,.13);display:inline-block;line-height:0;}
+  .wf svg{display:block;width:100%;height:100%;}
+  .wc-flags .vs{display:inline-flex;color:var(--muted-light);}
+  .wc-flags .vs svg{width:16px;height:16px;}
+  .wc-tag{display:inline-flex;align-items:center;gap:5px;}
+  .wc-tag svg{flex-shrink:0;}
   /* colorful section backgrounds */
   .hero{background:linear-gradient(180deg,#eaf0fb 0%,#f3f6fb 58%,var(--paper) 100%);}
   .claims{background:linear-gradient(180deg,#e3ebfa 0%,#eef3fb 100%);}
@@ -765,6 +776,13 @@
       </div>
     </div>
   </section>
+  <div class="band" aria-label="Masada">
+    <img loading="lazy" alt="The desert fortress of Masada rising above the Judean Desert and the Dead Sea" src="https://commons.wikimedia.org/wiki/Special:FilePath/Israel_Masada_BW_2.JPG?width=1920" decoding="async" onerror="this.style.display='none'">
+    <div class="band-in">
+      <div class="bandline">Masada: where the last revolt against Rome made its final stand.</div>
+      <div class="bandcred">Masada, above the Dead Sea &nbsp;&middot;&nbsp; photo: Berthold Werner / <a href="https://commons.wikimedia.org/wiki/File:Israel_Masada_BW_2.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>, public domain</div>
+    </div>
+  </div>
   <section class="origins" id="origins">
     <div class="wrap">
       <div class="section-head reveal">
@@ -802,6 +820,13 @@
       </div>
     </div>
   </section>
+  <div class="band" aria-label="Israel declares independence, 1948">
+    <img loading="lazy" alt="David Ben-Gurion declaring the State of Israel on 14 May 1948, beneath a portrait of Theodor Herzl" src="https://commons.wikimedia.org/wiki/Special:FilePath/Declaration_of_State_of_Israel_1948.jpg?width=1400" decoding="async" onerror="this.style.display='none'">
+    <div class="band-in">
+      <div class="bandline">14 May 1948: a state declared. The next morning, five armies answered.</div>
+      <div class="bandcred">Ben-Gurion declares independence, Tel Aviv, 1948 &nbsp;&middot;&nbsp; via <a href="https://commons.wikimedia.org/wiki/File:Declaration_of_State_of_Israel_1948.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, public domain</div>
+    </div>
+  </div>
   <section class="wars" id="wars">
     <div class="wrap">
       <div class="section-head reveal">
@@ -833,6 +858,7 @@
             <span class="wc-tag win" id="wcTag">Israel survived</span>
           </div>
           <h3 class="wc-name" id="wcName">War of Independence</h3>
+          <div class="wc-flags" id="wcFlags" aria-hidden="true"></div>
           <div class="wc-facts">
             <div class="wc-fact"><b id="wcWhoL">Combatants</b><span id="wcWho">Israel vs. Egypt, Jordan, Syria, Lebanon and Iraq</span></div>
             <div class="wc-fact"><b id="wcLenL">Duration</b><span id="wcLen">~10 months</span></div>
@@ -885,6 +911,39 @@
             <span class="vsrc">Unpacked · Explained</span>
             <h3>Two narratives of 1948</h3>
             <p>The same events told two ways: Israel's founding as independence, and the Palestinian Nakba. A fair look at how each side tells the story.</p>
+          </div>
+        </div>
+        <div class="vcard reveal" data-id="KqS8BQDjYpw">
+          <button class="vthumb" type="button" aria-label="Play video: Why did the Six-Day War happen?">
+            <img loading="lazy" src="https://i.ytimg.com/vi/KqS8BQDjYpw/hqdefault.jpg" alt="" decoding="async" onerror="this.style.display='none'">
+            <span class="vplay" aria-hidden="true"><svg viewBox="0 0 68 48" width="60" height="42"><path d="M66.5 7.7a8 8 0 0 0-5.6-5.7C56 .7 34 .7 34 .7s-22 0-26.9 1.3A8 8 0 0 0 1.5 7.7 83.6 83.6 0 0 0 .2 24a83.6 83.6 0 0 0 1.3 16.3 8 8 0 0 0 5.6 5.7C12 47.3 34 47.3 34 47.3s22 0 26.9-1.3a8 8 0 0 0 5.6-5.7A83.6 83.6 0 0 0 67.8 24a83.6 83.6 0 0 0-1.3-16.3z" fill="#f00"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></span>
+          </button>
+          <div class="vmeta">
+            <span class="vsrc">Unpacked · Six-Day War</span>
+            <h3>Why did the Six-Day War happen?</h3>
+            <p>Part one of Unpacked's series on 1967: the blockade of the Straits, the massed armies, and the build-up that set the war in motion.</p>
+          </div>
+        </div>
+        <div class="vcard reveal" data-id="woqxgoCHDWo">
+          <button class="vthumb" type="button" aria-label="Play video: What is the Balfour Declaration?">
+            <img loading="lazy" src="https://i.ytimg.com/vi/woqxgoCHDWo/hqdefault.jpg" alt="" decoding="async" onerror="this.style.display='none'">
+            <span class="vplay" aria-hidden="true"><svg viewBox="0 0 68 48" width="60" height="42"><path d="M66.5 7.7a8 8 0 0 0-5.6-5.7C56 .7 34 .7 34 .7s-22 0-26.9 1.3A8 8 0 0 0 1.5 7.7 83.6 83.6 0 0 0 .2 24a83.6 83.6 0 0 0 1.3 16.3 8 8 0 0 0 5.6 5.7C12 47.3 34 47.3 34 47.3s22 0 26.9-1.3a8 8 0 0 0 5.6-5.7A83.6 83.6 0 0 0 67.8 24a83.6 83.6 0 0 0-1.3-16.3z" fill="#f00"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></span>
+          </button>
+          <div class="vmeta">
+            <span class="vsrc">Unpacked · History of Israel</span>
+            <h3>What is the Balfour Declaration?</h3>
+            <p>The 1917 letter that backed a Jewish national home in Palestine — what it said, what it didn't, and why it is still argued over a century on.</p>
+          </div>
+        </div>
+        <div class="vcard reveal" data-id="76NytvQAIs0">
+          <button class="vthumb" type="button" aria-label="Play video: Why isn't there a Palestinian state?">
+            <img loading="lazy" src="https://i.ytimg.com/vi/76NytvQAIs0/hqdefault.jpg" alt="" decoding="async" onerror="this.style.display='none'">
+            <span class="vplay" aria-hidden="true"><svg viewBox="0 0 68 48" width="60" height="42"><path d="M66.5 7.7a8 8 0 0 0-5.6-5.7C56 .7 34 .7 34 .7s-22 0-26.9 1.3A8 8 0 0 0 1.5 7.7 83.6 83.6 0 0 0 .2 24a83.6 83.6 0 0 0 1.3 16.3 8 8 0 0 0 5.6 5.7C12 47.3 34 47.3 34 47.3s22 0 26.9-1.3a8 8 0 0 0 5.6-5.7A83.6 83.6 0 0 0 67.8 24a83.6 83.6 0 0 0-1.3-16.3z" fill="#f00"/><path d="M27 34l18-10-18-10z" fill="#fff"/></svg></span>
+          </button>
+          <div class="vmeta">
+            <span class="vsrc">PragerU · 5-Minute Video</span>
+            <h3>Why isn't there a Palestinian state?</h3>
+            <p>A short argument that the absence of a Palestinian state traces back to repeated rejections of partition and statehood offers.</p>
           </div>
         </div>
       </div>
@@ -1416,6 +1475,40 @@ var WARS=[
    ended:"Not over. A fragile ceasefire has held since October 2025. See the situation report for where it stands now.",
    legacy:"Began with the October 7 massacre, the deadliest day for Jews since the Holocaust, and remains unresolved."}
 ];
+/* small inline flags for the combatants in each war (language-neutral) */
+var WFLAGS={
+  il:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect y="2.2" width="24" height="2" fill="#0038b8"/><rect y="11.8" width="24" height="2" fill="#0038b8"/><path d="M12 5.2l2.5 4.3h-5zM12 10.8l-2.5-4.3h5z" fill="none" stroke="#0038b8" stroke-width=".7"/></svg>',
+  eg:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.33" fill="#CE1126"/><rect y="10.67" width="24" height="5.33" fill="#000"/><path d="M10.4 7h3.2l-.5 2.2h-2.2z" fill="#C09300"/></svg>',
+  jo:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.33" fill="#000"/><rect y="10.67" width="24" height="5.33" fill="#007A3D"/><path d="M0 0L11 8 0 16z" fill="#CE1126"/><circle cx="3.4" cy="8" r="1" fill="#fff"/></svg>',
+  sy:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.33" fill="#CE1126"/><rect y="10.67" width="24" height="5.33" fill="#007A3D"/><circle cx="9.5" cy="8" r="1.1" fill="#007A3D"/><circle cx="14.5" cy="8" r="1.1" fill="#007A3D"/></svg>',
+  lb:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="4" fill="#ED1C24"/><rect y="12" width="24" height="4" fill="#ED1C24"/><path d="M12 5l2.4 4.2h-4.8z" fill="#007A3D"/><rect x="11.4" y="8.7" width="1.2" height="2" fill="#6b4423"/></svg>',
+  iq:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.33" fill="#CE1126"/><rect y="10.67" width="24" height="5.33" fill="#000"/><circle cx="8" cy="8" r="1" fill="#007A3D"/><circle cx="12" cy="8" r="1" fill="#007A3D"/><circle cx="16" cy="8" r="1" fill="#007A3D"/></svg>',
+  gb:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="4.4"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="2.4"/></svg>',
+  fr:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect x="16" width="8" height="16" fill="#EF4135"/></svg>',
+  ps:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.33" fill="#000"/><rect y="10.67" width="24" height="5.33" fill="#007A3D"/><path d="M0 0L10 8 0 16z" fill="#CE1126"/></svg>',
+  hez:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#F2D200"/><path d="M7 11.5V7.2l1.8-1 1 1.3 1.2-1.6 1.2 1.6 1-1.3 1.8 1v4.3z" fill="#1b7a3a"/></svg>'
+};
+var VS_ICON='<span class="vs" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l8 8M15 15l3 3-1 3-3-1-3-3"/><path d="M21 3l-8 8M9 15l-3 3 1 3 3-1 3-3"/></svg></span>';
+var OUTCOME_ICON={
+  win:'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>',
+  truce:'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>',
+  ongoing:'<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h5l2-7 4 14 2-7h7"/></svg>'
+};
+var WAR_SIDES=[
+  {side:["il"],foe:["eg","jo","sy","lb","iq"]},
+  {side:["il","gb","fr"],foe:["eg"]},
+  {side:["il"],foe:["eg","jo","sy"]},
+  {side:["il"],foe:["eg"]},
+  {side:["il"],foe:["eg","sy"]},
+  {side:["il"],foe:["ps","sy"]},
+  {side:["il"],foe:["ps"]},
+  {side:["il"],foe:["ps"]},
+  {side:["il"],foe:["hez"]},
+  {side:["il"],foe:["ps"]},
+  {side:["il"],foe:["ps"]}
+];
+WAR_SIDES.forEach(function(s,i){ if(WARS[i]){ WARS[i].side=s.side; WARS[i].foe=s.foe; } });
+function warFlags(codes){ return (codes||[]).map(function(c){ return '<span class="wf">'+(WFLAGS[c]||'')+'</span>'; }).join(''); }
 (function(){
   var track=document.getElementById('warTrack'), fill=document.getElementById('warFill'),
       handle=document.getElementById('warHandle'), ticksWrap=document.getElementById('warTicks'),
@@ -1444,7 +1537,8 @@ var WARS=[
     document.getElementById('wcLegacy').textContent=w.legacy||'';
     document.getElementById('wcStarted').textContent=w.started;
     document.getElementById('wcEnded').textContent=w.ended;
-    var tg=document.getElementById('wcTag'); tg.textContent=w.tag; tg.className='wc-tag '+w.cls;
+    var tg=document.getElementById('wcTag'); tg.className='wc-tag '+w.cls; tg.innerHTML=(OUTCOME_ICON[w.cls]||''); var tgl=document.createElement('span'); tgl.textContent=w.tag; tg.appendChild(tgl);
+    var fl=document.getElementById('wcFlags'); if(fl){ fl.innerHTML='<span class="wf-row">'+warFlags(w.side)+'</span>'+VS_ICON+'<span class="wf-row">'+warFlags(w.foe)+'</span>'; }
     document.getElementById('warCard').className='warcard '+w.cls;
     tickEls.forEach(function(t,k){ t.classList.toggle('active',k===i); t.classList.toggle('passed',k<=i); });
     handle.setAttribute('aria-valuenow',i);
