@@ -38,18 +38,24 @@ function chunk(type, data) {
 // Draw the mark into an RGBA pixel buffer at the given size.
 function render(size) {
   const px = Buffer.alloc(size * size * 4);
-  const inRect = (x, y, x0, y0, x1, y1) => x >= x0 && x < x1 && y >= y0 && y < y1;
-  // fractions match favicon.svg
-  const sq = [0.32, 0.242, 0.68, 0.602];   // gold square
-  const bar = [0.32, 0.68, 0.68, 0.758];    // gold underline
+  // anti-aliased gold disc (the "On the Record" mark) on a navy field
+  const SS = 4, cx = 0.5, cy = 0.5, rDisc = 0.336;
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      const fx = (x + 0.5) / size, fy = (y + 0.5) / size;
-      let c = NAVY;
-      if (inRect(fx, fy, sq[0], sq[1], sq[2], sq[3]) ||
-          inRect(fx, fy, bar[0], bar[1], bar[2], bar[3])) c = GOLD;
+      let hits = 0;
+      for (let sy = 0; sy < SS; sy++) {
+        for (let sx = 0; sx < SS; sx++) {
+          const fx = (x + (sx + 0.5) / SS) / size;
+          const fy = (y + (sy + 0.5) / SS) / size;
+          if (Math.hypot(fx - cx, fy - cy) <= rDisc) hits++;
+        }
+      }
+      const f = hits / (SS * SS);
       const o = (y * size + x) * 4;
-      px[o] = c[0]; px[o + 1] = c[1]; px[o + 2] = c[2]; px[o + 3] = 255;
+      px[o]     = Math.round(NAVY[0] * (1 - f) + GOLD[0] * f);
+      px[o + 1] = Math.round(NAVY[1] * (1 - f) + GOLD[1] * f);
+      px[o + 2] = Math.round(NAVY[2] * (1 - f) + GOLD[2] * f);
+      px[o + 3] = 255;
     }
   }
   return px;
