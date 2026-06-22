@@ -147,25 +147,28 @@
   .contrib .c-title{font-size:18px;margin:3px 0 0;font-weight:600;letter-spacing:-.01em;}
   .contrib .c-desc{font-size:14px;color:#3a4757;margin:7px 0 0;line-height:1.55;}
   .contrib-note{max-width:var(--read);margin:30px auto 0;font-size:14px;color:var(--muted);font-style:italic;line-height:1.6;border-left:3px solid var(--gold);padding-left:18px;}
+  .contrib-credits{max-width:var(--read);margin:16px auto 0;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.03em;color:var(--muted);line-height:1.7;}
   @media (max-width:760px){ .contrib-grid{grid-template-columns:1fr;} }
   [dir="rtl"] .contrib{flex-direction:row-reverse;}
   [dir="rtl"] .contrib-note{border-left:0;border-right:3px solid var(--gold);padding-left:0;padding-right:18px;}
   /* contribution flip cards */
   .contrib.is-flip{background:none;border:none;box-shadow:none;padding:0;perspective:1300px;cursor:pointer;}
   .contrib.is-flip:hover{transform:none;}
-  .cf-inner{position:relative;width:100%;height:205px;transition:transform .6s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d;}
+  .cf-inner{position:relative;width:100%;height:232px;transition:transform .6s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d;}
   .contrib.is-flip.flipped .cf-inner{transform:rotateY(180deg);}
-  .cf-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:13px;border:1px solid var(--line);box-shadow:0 10px 26px -20px rgba(14,27,46,.2);padding:20px 22px;overflow:hidden;}
-  .cf-front{background:var(--surface);display:flex;gap:16px;align-items:flex-start;}
-  .cf-back{background:linear-gradient(160deg,#16294a,#0e1b2e);border-color:transparent;color:#E7EDF5;transform:rotateY(180deg);display:flex;flex-direction:column;gap:12px;justify-content:center;}
-  .cf-back .cf-vis{width:42px;height:42px;border-radius:10px;background:rgba(184,137,59,.18);border:1px solid rgba(184,137,59,.32);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
-  .cf-back .cf-vis svg{width:23px;height:23px;}
-  .cf-back .cf-k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;}
-  .cf-back .cf-impact{font-size:14px;line-height:1.55;color:#dce5f0;margin:0;}
-  .cf-cue{position:absolute;bottom:13px;right:15px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-text);opacity:.6;}
+  .cf-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:13px;border:1px solid var(--line);box-shadow:0 10px 26px -20px rgba(14,27,46,.2);overflow:hidden;}
+  .cf-front{background:var(--ink);}
+  .cf-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+  .cf-grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,46,0) 28%,rgba(14,27,46,.5) 58%,rgba(14,27,46,.94) 100%);}
+  .cf-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;z-index:2;}
+  .cf-cap .c-rank{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);font-weight:500;}
+  .cf-cap .cf-title{font-family:"Fraunces",serif;font-weight:600;font-size:18px;color:#fff;margin:3px 0 0;line-height:1.15;letter-spacing:-.01em;}
+  .cf-back{background:linear-gradient(160deg,#16294a,#0e1b2e);border-color:transparent;color:#E7EDF5;transform:rotateY(180deg);padding:18px 20px;display:flex;flex-direction:column;gap:11px;justify-content:center;}
+  .cf-back .cf-what{font-size:12.5px;line-height:1.5;color:#9fb1c8;margin:0;}
+  .cf-back .cf-k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:5px;}
+  .cf-back .cf-impact{font-size:13.5px;line-height:1.5;color:#eef3f9;margin:0;}
+  .cf-cue{position:absolute;bottom:12px;right:14px;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);z-index:2;}
   .contrib.is-flip:focus-visible{outline:2px solid var(--tekhelet);outline-offset:3px;border-radius:14px;}
-  [dir="rtl"] .cf-front{flex-direction:row-reverse;}
-  [dir="rtl"] .cf-cue{right:auto;left:15px;}
   @media (prefers-reduced-motion:reduce){ .cf-inner{transition:none;} }
   section{padding:78px 0;}
   .section-head{max-width:var(--read);margin-bottom:42px;}
@@ -1297,6 +1300,7 @@
         <div class="contrib"><span class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L6 16a2 2 0 0 0 1.8 3h8.4a2 2 0 0 0 1.8-3L14 8.5V3"/><path d="M8.5 14h7"/></svg></span><div class="c-body"><span class="c-rank">03</span><h3 class="c-title">Biomedical research</h3><p class="c-desc">Molecular biologist Rana Dajani's work on stem cells and the genetics of diabetes has advanced medical research drawn on by labs around the world.</p></div></div>
       </div>
       <p class="contrib-note reveal">Same filter as the list above — strictly world-changing science, medicine and technology. Every line is a documented scientist and a verifiable contribution. (Palestinians' contributions in literature, scholarship and the arts are real too, but fall outside this narrow view.) Sources: the Nobel Prize archive, the patents, and university faculties.</p>
+      <p class="contrib-credits">Card images via Wikimedia Commons — Duncan.Hull, Calistemon, A.&nbsp;Herzog, Mariusz&nbsp;Ch., Fleshas, Futurhit12, B.&nbsp;Fazzio, BuhaM, Strudelmonkey, JS, Karenphotonyc &amp; Manninog (CC&nbsp;BY / CC&nbsp;BY-SA); the rest public domain.</p>
     </div>
   </section>
   <section class="method" id="method">
@@ -2939,20 +2943,52 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     "Nanotechnology":"His silicon nanoparticles are being used to target cancer, monitor diabetes, and make solar panels brighter and cheaper.",
     "Biomedical research":"Her work on stem cells and the genetics of diabetes feeds the global research that labs build on to treat disease."
   };
+  var IMAGES = {
+    "RSA encryption":"https://commons.wikimedia.org/wiki/Special:FilePath/Adi_Shamir_Royal_Society.jpg?width=700",
+    "Drip irrigation":"https://commons.wikimedia.org/wiki/Special:FilePath/Banana_Plants_with_drip_irrigation_in_Harsoda%2C_Malkapur_Tehsil.jpg?width=700",
+    "Water reuse & desalination":"https://commons.wikimedia.org/wiki/Special:FilePath/Kwinana_Power_Station_and_Perth_Seawater_Desalination_Plant%2C_September_2020_01.jpg?width=700",
+    "Intel chip architecture":"https://commons.wikimedia.org/wiki/Special:FilePath/Die_%28the_%27heart%27%29_of_a_microprocessor_Intel_80486_with_1.2_millions_of_transistors%2C_ca._1990.jpg?width=700",
+    "Nobel-winning science":"https://commons.wikimedia.org/wiki/Special:FilePath/Ada_Yonath.jpg?width=700",
+    "The PillCam":"https://commons.wikimedia.org/wiki/Special:FilePath/CapsuleEndoscope.jpg?width=700",
+    "Copaxone":"https://commons.wikimedia.org/wiki/Special:FilePath/Copaxone.jpg?width=700",
+    "Mobileye":"https://commons.wikimedia.org/wiki/Special:FilePath/Google_Co-Founder_Brin_Shows_Secretary_Kerry_the_Sensors_Inside_a_Self-Driving_Car_at_the_2016_Global_Entrepreneurship%27s_Innovation_Marketplace_at_Stanford_University_%2827786623161%29.jpg?width=700",
+    "The modern firewall":"https://commons.wikimedia.org/wiki/Special:FilePath/BalticServers_data_center.jpg?width=700",
+    "Waze":"https://commons.wikimedia.org/wiki/Special:FilePath/Utilisation_de_Waze_via_Apple_CarPlay.png?width=700",
+    "Instant messaging":"https://commons.wikimedia.org/wiki/Special:FilePath/Kidzworld_Instant_Message_Example.png?width=700",
+    "The USB flash drive":"https://commons.wikimedia.org/wiki/Special:FilePath/SanDisk-Cruzer-USB-4GB-ThumbDrive.jpg?width=700",
+    "Affordable medicine":"https://commons.wikimedia.org/wiki/Special:FilePath/Pills_and_medicines_01.jpg?width=700",
+    "The emergency bandage":"https://commons.wikimedia.org/wiki/Special:FilePath/The_Emergency_Bandage_in_different_forms_of_packaging.jpg?width=700",
+    "Agritech & food science":"https://commons.wikimedia.org/wiki/Special:FilePath/Cherry_Tomato_on_Vine.JPG?width=700",
+    "Water from air":"https://commons.wikimedia.org/wiki/Special:FilePath/Omar_M._Yaghi%2C_chemist_and_2025_Nobel_laurate_in_chemistry.jpg?width=700",
+    "Nanotechnology":"https://commons.wikimedia.org/wiki/Special:FilePath/%28a%29_Volume_representation_of_a_particle_formed_by_a_collection_of_octahedral_Si_nanoparticles%2C_%28_b%29_The_central_slice_showing_the_high_degree_of_porosity._The_scale_bar_is_1_micrometer.jpg?width=700",
+    "Biomedical research":"https://commons.wikimedia.org/wiki/Special:FilePath/Female_scientist_with_DNA_sample_pippetting.jpg?width=700"
+  };
   document.querySelectorAll('.contributions .contrib').forEach(function(card){
     var t = card.querySelector('.c-title'); if(!t){return;}
-    var impact = IMPACT[t.textContent.trim()]; if(!impact){return;}
-    var ico = card.querySelector('.c-ico'); var icoHTML = ico ? ico.innerHTML : '';
-    var front = card.innerHTML;
+    var key = t.textContent.trim();
+    var impact = IMPACT[key]; if(!impact){return;}
+    var img = IMAGES[key];
+    var rankEl = card.querySelector('.c-rank'), rank = rankEl ? rankEl.textContent : '';
+    var descEl = card.querySelector('.c-desc'), descHTML = descEl ? descEl.innerHTML : '';
+    var titleHTML = t.innerHTML;
+    var altAttr = key.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+    var frontInner = img
+      ? '<img class="cf-img" src="'+img+'" alt="'+altAttr+'" loading="lazy" decoding="async" onerror="this.style.display=\'none\'">'+
+        '<span class="cf-grad" aria-hidden="true"></span>'+
+        '<span class="cf-cap"><span class="c-rank">'+rank+'</span><h3 class="cf-title">'+titleHTML+'</h3></span>'
+      : card.innerHTML;
     card.innerHTML =
       '<div class="cf-inner">'+
-        '<div class="cf-face cf-front">'+front+'<span class="cf-cue" aria-hidden="true">Flip ↻</span></div>'+
-        '<div class="cf-face cf-back"><span class="cf-vis" aria-hidden="true">'+icoHTML+'</span><div><span class="cf-k">How it helps the world</span><p class="cf-impact">'+impact+'</p></div></div>'+
+        '<div class="cf-face cf-front">'+frontInner+'<span class="cf-cue" aria-hidden="true">Flip ↻</span></div>'+
+        '<div class="cf-face cf-back">'+
+          (descHTML ? '<p class="cf-what">'+descHTML+'</p>' : '')+
+          '<div><span class="cf-k">How it helps the world</span><p class="cf-impact">'+impact+'</p></div>'+
+        '</div>'+
       '</div>';
     card.classList.add('is-flip');
     card.setAttribute('tabindex','0');
     card.setAttribute('role','button');
-    card.setAttribute('aria-label', t.textContent.trim()+' — flip for how it helps the world');
+    card.setAttribute('aria-label', key+' — flip for how it helps the world');
     function toggle(){ var f=card.classList.toggle('flipped'); card.setAttribute('aria-pressed', f?'true':'false'); }
     card.addEventListener('click', toggle);
     card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
