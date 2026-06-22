@@ -148,6 +148,23 @@
   @media (max-width:760px){ .contrib-grid{grid-template-columns:1fr;} }
   [dir="rtl"] .contrib{flex-direction:row-reverse;}
   [dir="rtl"] .contrib-note{border-left:0;border-right:3px solid var(--gold);padding-left:0;padding-right:18px;}
+  /* contribution flip cards */
+  .contrib.is-flip{background:none;border:none;box-shadow:none;padding:0;perspective:1300px;cursor:pointer;}
+  .contrib.is-flip:hover{transform:none;}
+  .cf-inner{position:relative;width:100%;height:205px;transition:transform .6s cubic-bezier(.4,.15,.2,1);transform-style:preserve-3d;}
+  .contrib.is-flip.flipped .cf-inner{transform:rotateY(180deg);}
+  .cf-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:13px;border:1px solid var(--line);box-shadow:0 10px 26px -20px rgba(14,27,46,.2);padding:20px 22px;overflow:hidden;}
+  .cf-front{background:var(--surface);display:flex;gap:16px;align-items:flex-start;}
+  .cf-back{background:linear-gradient(160deg,#16294a,#0e1b2e);border-color:transparent;color:#E7EDF5;transform:rotateY(180deg);display:flex;flex-direction:column;gap:12px;justify-content:center;}
+  .cf-back .cf-vis{width:42px;height:42px;border-radius:10px;background:rgba(184,137,59,.18);border:1px solid rgba(184,137,59,.32);display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0;}
+  .cf-back .cf-vis svg{width:23px;height:23px;}
+  .cf-back .cf-k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px;}
+  .cf-back .cf-impact{font-size:14px;line-height:1.55;color:#dce5f0;margin:0;}
+  .cf-cue{position:absolute;bottom:13px;right:15px;font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-text);opacity:.6;}
+  .contrib.is-flip:focus-visible{outline:2px solid var(--tekhelet);outline-offset:3px;border-radius:14px;}
+  [dir="rtl"] .cf-front{flex-direction:row-reverse;}
+  [dir="rtl"] .cf-cue{right:auto;left:15px;}
+  @media (prefers-reduced-motion:reduce){ .cf-inner{transition:none;} }
   section{padding:78px 0;}
   .section-head{max-width:var(--read);margin-bottom:42px;}
   .section-head h2{font-size:clamp(28px,4vw,42px);margin-top:16px;}
@@ -2895,6 +2912,49 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   var saved='en'; try{ var v=localStorage.getItem('otr_lang'); if(v){ saved=v; } }catch(e){}
   apply(saved);
+})();
+</script>
+<script>
+/* contribution cards: flip to reveal how each one helps the world */
+(function(){
+  var IMPACT = {
+    "RSA encryption":"Every time you bank, shop or message securely online, public-key cryptography like RSA is what keeps it private — the quiet backbone of trust on the internet.",
+    "Drip irrigation":"It grows more food with up to half the water — increasingly vital as climate change dries out farmland from California to India to the Sahel.",
+    "Water reuse & desalination":"It turns seawater and sewage into safe drinking water, giving drought-stricken regions a way to survive without running dry.",
+    "Intel chip architecture":"These designs sit inside billions of laptops and PCs — a huge share of the computing the modern economy runs on traces back to them.",
+    "Nobel-winning science":"Knowing how cells dispose of proteins underpins new cancer and brain-disease drugs; the other discoveries reshaped chemistry, biology and economics.",
+    "The PillCam":"It replaced invasive scopes and surgery with a pill you swallow — earlier, gentler diagnosis of gut disease for millions of patients.",
+    "Copaxone":"For decades it has slowed multiple sclerosis, helping patients hold on to their mobility and independence for longer.",
+    "Mobileye":"Its collision-avoidance keeps tens of millions of drivers safer now, and lays the groundwork for self-driving cars that could cut road deaths.",
+    "The modern firewall":"Stateful firewalls are a basic layer shielding the banks, hospitals and governments you rely on from cyberattack.",
+    "Waze":"By routing hundreds of millions of drivers around traffic in real time, it saves countless hours and fuel every single day.",
+    "Instant messaging":"ICQ proved real-time chat could work at scale — the direct ancestor of WhatsApp, Messenger and every messaging app you use.",
+    "The USB flash drive":"It made carrying and sharing files effortless for everyone, retiring the floppy disk and the CD across the world.",
+    "Affordable medicine":"Teva's generics put life-saving drugs within reach of billions who could never afford brand-name prices.",
+    "The emergency bandage":"It stops catastrophic bleeding in minutes — credited with saving lives on battlefields and at accident and disaster scenes worldwide.",
+    "Agritech & food science":"Hardier crops and smarter farming help feed a growing planet on less land and water, and raise yields for farmers in the developing world.",
+    "Water from air":"His materials pull drinking water from thin air — a potential lifeline for the two billion people without safe water, and a tool for capturing carbon too.",
+    "Nanotechnology":"His silicon nanoparticles are being used to target cancer, monitor diabetes, and make solar panels brighter and cheaper.",
+    "Biomedical research":"Her work on stem cells and the genetics of diabetes feeds the global research that labs build on to treat disease."
+  };
+  document.querySelectorAll('.contributions .contrib').forEach(function(card){
+    var t = card.querySelector('.c-title'); if(!t){return;}
+    var impact = IMPACT[t.textContent.trim()]; if(!impact){return;}
+    var ico = card.querySelector('.c-ico'); var icoHTML = ico ? ico.innerHTML : '';
+    var front = card.innerHTML;
+    card.innerHTML =
+      '<div class="cf-inner">'+
+        '<div class="cf-face cf-front">'+front+'<span class="cf-cue" aria-hidden="true">Flip ↻</span></div>'+
+        '<div class="cf-face cf-back"><span class="cf-vis" aria-hidden="true">'+icoHTML+'</span><div><span class="cf-k">How it helps the world</span><p class="cf-impact">'+impact+'</p></div></div>'+
+      '</div>';
+    card.classList.add('is-flip');
+    card.setAttribute('tabindex','0');
+    card.setAttribute('role','button');
+    card.setAttribute('aria-label', t.textContent.trim()+' — flip for how it helps the world');
+    function toggle(){ var f=card.classList.toggle('flipped'); card.setAttribute('aria-pressed', f?'true':'false'); }
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); toggle(); } });
+  });
 })();
 </script>
 </body>
