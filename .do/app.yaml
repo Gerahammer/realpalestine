@@ -1,0 +1,25 @@
+# DigitalOcean App Platform — static site spec
+# Deploy:  doctl apps create --spec .do/app.yaml
+# Update:  doctl apps update <APP_ID> --spec .do/app.yaml
+#
+# Uses a generic public-git source, so it needs no GitHub OAuth handshake.
+# Static sites are free on App Platform (first 3) and served over a global CDN
+# with automatic HTTPS.
+name: realpalestine
+region: nyc
+static_sites:
+  - name: web
+    git:
+      repo_clone_url: https://github.com/Gerahammer/realpalestine.git
+      branch: main
+    source_dir: /public
+    index_document: index.html
+    error_document: 404.html
+# Custom domain — add AFTER realpalestine.com is registered and its nameservers
+# point at DigitalOcean (ns1/ns2/ns3.digitalocean.com). Then re-run the update
+# command above with this block uncommented.
+# domains:
+#   - domain: realpalestine.com
+#     type: PRIMARY
+#   - domain: www.realpalestine.com
+#     type: ALIAS

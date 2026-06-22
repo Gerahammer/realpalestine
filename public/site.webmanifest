@@ -1,0 +1,16 @@
+{
+  "name": "Palestine: The Whole Truth",
+  "short_name": "On the Record",
+  "description": "The Israel–Palestine conflict — the history, the wars, and the claims of apartheid, genocide and the Nakba, weighed against the evidence and the sources.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E1B2E",
+  "theme_color": "#0E1B2E",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
