@@ -3,6 +3,10 @@
 # Idempotent: first run creates the repo + app; later runs push + redeploy.
 set -euo pipefail
 
+# Ignore any stale GH_TOKEN/GITHUB_TOKEN in the environment so gh/git use the
+# credentials saved by `gh auth login`.
+unset GH_TOKEN GITHUB_TOKEN || true
+
 REPO="Gerahammer/realpalestine"          # GitHub owner/name
 APP_NAME="realpalestine"                   # DO App Platform app name
 BRANCH="main"
