@@ -236,6 +236,15 @@
   .method .srclist li:last-child{border-bottom:none;}
   .method .srclist .k{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-text);display:block;margin-bottom:3px;}
   .method .srclist a{font-size:15px;color:var(--ink);}
+  .otherside{margin-top:48px;border-top:1px solid var(--line);padding-top:38px;}
+  .otherside .os-head{max-width:var(--read);}
+  .otherside h3{font-size:clamp(20px,3vw,27px);margin-top:14px;font-weight:600;}
+  .otherside .os-head p{color:var(--muted);margin-top:12px;font-size:15.5px;}
+  .os-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;}
+  .os-link{display:flex;flex-direction:column;gap:7px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:16px 18px;color:var(--ink);font-family:"Fraunces",serif;font-size:16px;font-weight:600;line-height:1.25;transition:border-color .15s,transform .15s;}
+  .os-link:hover{border-color:var(--tekhelet);transform:translateY(-2px);text-decoration:none;}
+  .os-k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-text);font-weight:500;}
+  @media (max-width:760px){ .os-links{grid-template-columns:1fr;} }
   .origins{background:var(--paper);}
   .origins .prose{max-width:var(--read);}
   .origins .prose p{color:#27313f;margin:14px 0 0;}
@@ -482,6 +491,9 @@
   footer .wordmark{color:#fff;margin-bottom:18px;}
   footer p{font-size:13.5px;max-width:64ch;line-height:1.7;margin:0 0 12px;}
   footer .fine{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:#6f8094;margin-top:22px;line-height:1.8;}
+  footer .footlinks{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;margin-top:14px;line-height:1.9;}
+  footer .footlinks a{color:#9fb0c4;text-decoration:none;}
+  footer .footlinks a:hover{color:#fff;text-decoration:underline;}
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
   /* interaction & depth polish */
@@ -522,7 +534,7 @@
     .hero-map,.band img{animation:none;}
   }
   /* intro facade: reveal device */
-  #facade{position:fixed;inset:0;z-index:9999;background:radial-gradient(125% 100% at 50% 0%,#0c4a29 0%,#06170d 56%,#000 100%);color:#fff;display:flex;flex-direction:column;overflow:hidden;}
+  #facade{position:fixed;inset:0;z-index:9999;background:radial-gradient(125% 100% at 50% 0%,#16273f 0%,#0a1422 56%,#06090f 100%);color:#fff;display:flex;flex-direction:column;overflow:hidden;}
   #facade.gone{opacity:0;transform:translateY(-4%);transition:opacity .7s ease,transform .7s ease;pointer-events:none;}
   body.locked{overflow:hidden;}
   .fac-pattern{position:absolute;inset:0;pointer-events:none;opacity:.06;background-image:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 13px),repeating-linear-gradient(-45deg,#fff 0 2px,transparent 2px 13px);}
@@ -533,25 +545,25 @@
   .fac-flag i:nth-child(2){background:#fff;}
   .fac-flag i:nth-child(3){background:#0a8a44;}
   .fac-flag::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:#ce1126;clip-path:polygon(0 0,100% 50%,0 100%);}
+  .fac-dot{width:9px;height:9px;background:var(--gold);border-radius:1px;flex-shrink:0;}
   .fac-brand{font-family:"IBM Plex Mono",monospace;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#fff;font-weight:600;}
   .fac-skip{margin-left:auto;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;padding:6px;}
   .fac-skip:hover{color:#fff;}
   .fac-main{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:center;max-width:1100px;width:100%;margin:0 auto;padding:10px 28px 48px;}
-  .fac-kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#74e0a2;display:inline-flex;align-items:center;gap:10px;}
-  .fac-kicker::before{content:"";width:26px;height:1px;background:#74e0a2;display:inline-block;}
+  .fac-kicker{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#B8893B;display:inline-flex;align-items:center;gap:10px;}
+  .fac-kicker::before{content:"";width:26px;height:1px;background:#B8893B;display:inline-block;}
   .fac-title{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(42px,8.5vw,98px);line-height:.96;letter-spacing:-.02em;margin:18px 0 0;position:relative;display:inline-block;}
-  .fac-title .strike{position:absolute;left:-2%;right:-2%;top:50%;height:9px;border-radius:5px;background:#ce1126;box-shadow:0 0 20px rgba(206,17,38,.55);transform:scaleX(0);transform-origin:left;}
+  .fac-title .strike{position:absolute;left:-1%;right:-1%;top:96%;height:6px;border-radius:4px;background:var(--gold);box-shadow:0 0 18px rgba(184,137,59,.5);transform:scaleX(0);transform-origin:left;}
   #facade.turn .fac-title .strike{transform:scaleX(1);transition:transform .5s cubic-bezier(.7,0,.3,1);}
   .fac-sub{font-size:clamp(16px,2.3vw,21px);color:rgba(255,255,255,.78);margin-top:22px;max-width:48ch;line-height:1.5;}
   .fac-slogans{margin:28px 0 0;display:flex;flex-direction:column;max-width:62ch;}
   .fac-slogan{display:flex;align-items:center;gap:13px;padding:8px 0;font-size:clamp(15px,1.9vw,18px);font-weight:600;color:#fff;border-bottom:1px solid rgba(255,255,255,.09);}
-  .fac-slogan .m{color:#ce1126;font-size:13px;line-height:1;flex-shrink:0;}
+  .fac-slogan .m{color:var(--gold);font-size:13px;line-height:1;flex-shrink:0;}
   .fac-cta{margin-top:32px;}
   .fac-btn{font-family:"IBM Plex Mono",monospace;font-size:14px;letter-spacing:.05em;font-weight:600;color:#06170d;background:#fff;border:none;border-radius:999px;padding:15px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:transform .15s,background .15s;}
-  .fac-btn:hover{transform:translateY(-1px);background:#74e0a2;}
-  .fac-btn.alt{background:#ce1126;color:#fff;}
-  .fac-btn.alt:hover{background:#e22a3c;}
-  .fac-melon{position:absolute;right:32px;bottom:30px;width:130px;height:auto;opacity:.92;display:block;}
+  .fac-btn:hover{transform:translateY(-1px);background:#B8893B;}
+  .fac-btn.alt{background:var(--tekhelet);color:#fff;}
+  .fac-btn.alt:hover{background:var(--tekhelet-deep);}
   .fac-reveal{position:absolute;inset:0;z-index:5;background:linear-gradient(180deg,#0E1B2E,#0a1422);display:flex;flex-direction:column;justify-content:center;padding:0 28px;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .55s ease,transform .55s ease;}
   .fac-reveal.show{opacity:1;transform:none;pointer-events:auto;}
   .fac-reveal .in{max-width:760px;margin:0 auto;width:100%;}
@@ -562,7 +574,6 @@
   .fac-reveal .rcta{margin-top:32px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
   .fac-reveal .rcta .tagline{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.5);}
   @media (max-width:760px){
-    .fac-melon{width:92px;right:18px;bottom:18px;opacity:.85;}
     .fac-slogan:nth-child(n+5){display:none;}
     .fac-main{padding-bottom:120px;}
   }
@@ -577,14 +588,14 @@
 <div id="facade">
   <div class="fac-pattern"></div>
   <div class="fac-top">
-    <span class="fac-flag"><i></i><i></i><i></i></span>
-    <span class="fac-brand">Free Palestine · The Whole Truth</span>
+    <span class="fac-dot" aria-hidden="true"></span>
+    <span class="fac-brand">On the Record</span>
     <button class="fac-skip" id="facSkip" type="button">Skip intro</button>
   </div>
   <div class="fac-main">
-    <span class="fac-kicker">What they don't want you to see</span>
-    <h1 class="fac-title">The whole truth<br>about Palestine<span class="strike"></span></h1>
-    <p class="fac-sub">The headlines, the history, the occupation. Here is what is really going on, in plain sight.</p>
+    <span class="fac-kicker">The claims, examined</span>
+    <h1 class="fac-title">You've heard the claims.<br>Now see them checked.<span class="strike"></span></h1>
+    <p class="fac-sub">An evidence-first case for Israel. It takes the most common accusations, in their strongest form, and lays the record beside each one — with sources, dates, and an honest note wherever the question is genuinely open.</p>
     <div class="fac-slogans">
       <div class="fac-slogan"><span class="m">◆</span> Israel is an apartheid state.</div>
       <div class="fac-slogan"><span class="m">◆</span> Stop the genocide in Gaza.</div>
@@ -594,21 +605,8 @@
       <div class="fac-slogan"><span class="m">◆</span> Tens of thousands of innocent civilians, killed.</div>
     </div>
     <div class="fac-cta">
-      <button class="fac-btn" id="facGo" type="button">Show me the whole truth <span aria-hidden="true">→</span></button>
+      <button class="fac-btn" id="facGo" type="button">See them checked <span aria-hidden="true">→</span></button>
     </div>
-    <svg class="fac-melon" viewBox="0 0 130 66" aria-hidden="true">
-      <path d="M5 7 A60 60 0 0 0 125 7 Z" fill="#0a7a3c" transform="rotate(180 65 7)"/>
-      <path d="M14 7 A51 51 0 0 0 116 7 Z" fill="#f2f5f0" transform="rotate(180 65 7)"/>
-      <path d="M20 7 A45 45 0 0 0 110 7 Z" fill="#d4203c" transform="rotate(180 65 7)"/>
-      <g fill="#1a1812">
-        <ellipse cx="65" cy="22" rx="2.5" ry="4.2"/>
-        <ellipse cx="48" cy="26" rx="2.5" ry="4.2" transform="rotate(-16 48 26)"/>
-        <ellipse cx="82" cy="26" rx="2.5" ry="4.2" transform="rotate(16 82 26)"/>
-        <ellipse cx="36" cy="18" rx="2.5" ry="4.2" transform="rotate(-28 36 18)"/>
-        <ellipse cx="94" cy="18" rx="2.5" ry="4.2" transform="rotate(28 94 18)"/>
-        <ellipse cx="65" cy="38" rx="2.5" ry="4.2"/>
-      </g>
-    </svg>
   </div>
   <div class="fac-reveal" id="facReveal">
     <div class="in">
@@ -1155,6 +1153,21 @@
           </ul>
         </div>
       </div>
+      <div class="otherside reveal" id="other-side">
+        <div class="os-head">
+          <span class="eyebrow">Read the other side</span>
+          <h3>The strongest opposing sources, linked directly</h3>
+          <p>Taking the other case seriously means pointing you to it, not just describing it. These are among the most substantial sources that argue against the framing on this page. Read them, then judge for yourself.</p>
+        </div>
+        <div class="os-links">
+          <a class="os-link" href="https://www.hrw.org/report/2021/04/27/threshold-crossed/israeli-authorities-and-crimes-apartheid-and-persecution" target="_blank" rel="noopener"><span class="os-k">Apartheid · HRW</span>“A Threshold Crossed”</a>
+          <a class="os-link" href="https://www.amnesty.org/en/latest/campaigns/2022/02/israels-system-of-apartheid/" target="_blank" rel="noopener"><span class="os-k">Apartheid · Amnesty</span>Israel's system of apartheid</a>
+          <a class="os-link" href="https://www.btselem.org/apartheid" target="_blank" rel="noopener"><span class="os-k">Apartheid · B'Tselem</span>A regime of Jewish supremacy</a>
+          <a class="os-link" href="https://www.icj-cij.org/case/192" target="_blank" rel="noopener"><span class="os-k">Law · ICJ</span>South Africa v. Israel</a>
+          <a class="os-link" href="https://www.icj-cij.org/case/186" target="_blank" rel="noopener"><span class="os-k">Law · ICJ</span>2024 Opinion on the Occupation</a>
+          <a class="os-link" href="/about.html"><span class="os-k">More</span>About, method &amp; corrections</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -1163,6 +1176,7 @@
     <div class="wordmark"><span class="dot"></span>On the Record</div>
     <p>An independent educational resource that sets out the case for Israel with sources. It is not tied to any government. Several of the questions it takes on are matters of real and reasonable dispute, and where that is true it says so and points you to the record, so you can judge for yourself.</p>
     <p class="fine">Content current as of June 2026. Casualty figures and legal-case status change, so verify before you cite. Photos via Wikimedia Commons, public domain.</p>
+    <p class="footlinks"><a href="/about.html">About &amp; method</a> &middot; <a href="/about.html#other-side">The other side's sources</a> &middot; <a href="/about.html#corrections">Corrections</a></p>
   </div>
 </footer>
 <script>
@@ -1599,9 +1613,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   var I18N = {};
   I18N.en = {
     nav_claims:"The claims", nav_situation:"Situation", nav_timeline:"Timeline", nav_origins:"Origins", nav_wars:"Wars", nav_watch:"Watch", nav_verify:"Verify", nav_dives:"Deep dives", nav_sources:"Sources",
-    fac_brand:"Free Palestine · The Whole Truth", fac_skip:"Skip intro", fac_kicker:"What they don't want you to see", fac_title:"The whole truth<br>about Palestine", fac_sub:"The headlines, the history, the occupation. Here is what is really going on, in plain sight.",
+    fac_brand:"On the Record", fac_skip:"Skip intro", fac_kicker:"The claims, examined", fac_title:"You've heard the claims.<br>Now see them checked.", fac_sub:"An evidence-first case for Israel. It takes the most common accusations, in their strongest form, and lays the record beside each one — with sources, dates, and an honest note wherever the question is genuinely open.",
     slogans:["Israel is an apartheid state.","Stop the genocide in Gaza.","End the settler-colonial occupation.","From the river to the sea, Palestine will be free.","Gaza is the world's largest open-air prison.","Tens of thousands of innocent civilians, killed."],
-    fac_go:"Show me the whole truth", fac_rk:"Before you scroll", fac_revealh2:"You've heard the slogans. The real question is whether you've ever checked them.", fac_revealp:"Every line on the last screen is something you have probably been told more than once. This site takes each one, states it fairly in its strongest form, and lays the evidence next to it, with sources, dates, and an honest note wherever a question is genuinely open. Read it, then make up your own mind.", fac_enter:"Enter the record", fac_tagline:"On the Record · the case for Israel, argued from the evidence",
+    fac_go:"See them checked", fac_rk:"Before you scroll", fac_revealh2:"You've heard the slogans. The real question is whether you've ever checked them.", fac_revealp:"Every line on the last screen is something you have probably been told more than once. This site takes each one, states it fairly in its strongest form, and lays the evidence next to it, with sources, dates, and an honest note wherever a question is genuinely open. Read it, then make up your own mind.", fac_enter:"Enter the record", fac_tagline:"On the Record · the case for Israel, argued from the evidence",
     hero_eyebrow:"An interactive brief", hero_h1:"The case for Israel, <em>argued from the record.</em>", hero_lede:"Most of what spreads about Israel online is a claim that gets repeated until it sounds like a fact. This is a working reference. Flip the most common accusations to read the evidence behind them, scrub three thousand years to see who actually ruled this land, and check every point against a real source. Where something is a genuine dispute rather than a settled fact, it says so.",
     chips:["Where things stand now","Scrub 3,000 years","Flip the claims","Deep dives"],
     hero_stamp:"Updated <b>June&nbsp;2026</b> &nbsp;&middot;&nbsp; current figures change, so verify before you cite",
@@ -1619,9 +1633,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   I18N.ar = {
     nav_claims:"الادعاءات", nav_situation:"الوضع الحالي", nav_timeline:"التسلسل الزمني", nav_origins:"الأصول", nav_wars:"الحروب", nav_watch:"شاهد", nav_verify:"تحقّق", nav_dives:"تحليلات معمّقة", nav_sources:"المصادر",
-    fac_brand:"فلسطين حرة · الحقيقة كاملة", fac_skip:"تخطّي المقدمة", fac_kicker:"ما لا يريدونك أن تراه", fac_title:"الحقيقة كاملة<br>عن فلسطين", fac_sub:"العناوين، والتاريخ، والاحتلال. إليك ما يجري فعلًا، على مرأى من الجميع.",
+    fac_brand:"On the Record", fac_skip:"تخطّي المقدمة", fac_kicker:"الادعاءات، تحت التدقيق", fac_title:"لقد سمعت الادعاءات.<br>شاهدها الآن تحت التدقيق.", fac_sub:"حجة لإسرائيل تنطلق من الأدلة. تأخذ أكثر الاتهامات شيوعًا، بأقوى صيغها، وتضع السجل بجانب كل واحد منها — مع المصادر والتواريخ وملاحظة صادقة حيثما كان السؤال محل خلاف حقيقي.",
     slogans:["إسرائيل دولة فصل عنصري.","أوقفوا الإبادة الجماعية في غزة.","أنهوا الاحتلال الاستيطاني الاستعماري.","من النهر إلى البحر، فلسطين ستتحرر.","غزة أكبر سجن مفتوح في العالم.","عشرات الآلاف من المدنيين الأبرياء، قُتلوا."],
-    fac_go:"أرني الحقيقة كاملة", fac_rk:"قبل أن تُكمل", fac_revealh2:"لقد سمعت الشعارات. السؤال الحقيقي هو هل دقّقت فيها يومًا.", fac_revealp:"كل سطر في الشاشة السابقة هو أمر قيل لك على الأرجح أكثر من مرة. يأخذ هذا الموقع كل واحد منها، ويعرضه بأقوى صيغة وبإنصاف، ثم يضع الأدلة بجانبه، مع المصادر والتواريخ وملاحظة صريحة حيثما كانت المسألة محل خلاف حقيقي. اقرأه، ثم كوّن رأيك بنفسك.", fac_enter:"ادخل إلى السجل", fac_tagline:"On the Record · قضية إسرائيل، مبنية على الأدلة",
+    fac_go:"شاهدها تحت التدقيق", fac_rk:"قبل أن تُكمل", fac_revealh2:"لقد سمعت الشعارات. السؤال الحقيقي هو هل دقّقت فيها يومًا.", fac_revealp:"كل سطر في الشاشة السابقة هو أمر قيل لك على الأرجح أكثر من مرة. يأخذ هذا الموقع كل واحد منها، ويعرضه بأقوى صيغة وبإنصاف، ثم يضع الأدلة بجانبه، مع المصادر والتواريخ وملاحظة صريحة حيثما كانت المسألة محل خلاف حقيقي. اقرأه، ثم كوّن رأيك بنفسك.", fac_enter:"ادخل إلى السجل", fac_tagline:"On the Record · قضية إسرائيل، مبنية على الأدلة",
     hero_eyebrow:"موجز تفاعلي", hero_h1:"قضية إسرائيل، <em>كما يرويها السجل.</em>", hero_lede:"معظم ما ينتشر عن إسرائيل على الإنترنت هو ادعاء يُكرَّر حتى يبدو وكأنه حقيقة. هذا مرجع عملي. اقلب أكثر الاتهامات شيوعًا لتقرأ الأدلة خلفها، وتنقّل عبر ثلاثة آلاف عام لترى من حكم هذه الأرض فعلًا، ودقّق كل نقطة مقابل مصدر حقيقي. وحيثما يكون الأمر خلافًا حقيقيًا لا حقيقة مستقرة، فإنه يقول ذلك.",
     chips:["أين تقف الأمور الآن","تنقّل عبر 3000 عام","اقلب الادعاءات","تحليلات معمّقة"],
     hero_stamp:"حُدِّث في <b>يونيو&nbsp;2026</b> &nbsp;&middot;&nbsp; الأرقام الحالية تتغيّر، فتحقّق قبل الاقتباس",
@@ -1639,9 +1653,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   I18N.he = {
     nav_claims:"הטענות", nav_situation:"המצב", nav_timeline:"ציר זמן", nav_origins:"ראשית", nav_wars:"מלחמות", nav_watch:"וידאו", nav_verify:"אימות", nav_dives:"צלילות עומק", nav_sources:"מקורות",
-    fac_brand:"פלסטין חופשית · האמת המלאה", fac_skip:"דלג על הפתיחה", fac_kicker:"מה שהם לא רוצים שתראו", fac_title:"האמת המלאה<br>על פלסטין", fac_sub:"הכותרות, ההיסטוריה, הכיבוש. הנה מה שבאמת קורה, לאור היום.",
+    fac_brand:"On the Record", fac_skip:"דלג על הפתיחה", fac_kicker:"הטענות, בבדיקה", fac_title:"שמעתם את הטענות.<br>עכשיו ראו אותן נבדקות.", fac_sub:"טיעון לישראל שמתחיל מהראיות. הוא לוקח את ההאשמות הנפוצות, בצורתן החזקה ביותר, ומניח את הרשומה לצד כל אחת מהן — עם מקורות, תאריכים והערה כנה בכל מקום שבו השאלה באמת פתוחה.",
     slogans:["ישראל היא מדינת אפרטהייד.","עצרו את רצח העם בעזה.","סיימו את הכיבוש הקולוניאלי־התנחלותי.","מהנהר עד הים, פלסטין תהיה חופשית.","עזה היא הכלא הפתוח הגדול בעולם.","עשרות אלפי אזרחים חפים מפשע, נהרגו."],
-    fac_go:"הראו לי את האמת המלאה", fac_rk:"לפני שתגללו", fac_revealh2:"שמעתם את הסיסמאות. השאלה האמיתית היא אם אי פעם בדקתם אותן.", fac_revealp:"כל שורה במסך הקודם היא משהו שכנראה נאמר לכם יותר מפעם אחת. האתר הזה לוקח כל אחת מהן, מנסח אותה בהגינות ובצורתה החזקה ביותר, ומניח לצדה את הראיות, עם מקורות, תאריכים והערה כנה בכל מקום שבו השאלה באמת פתוחה. קראו, ואז גבשו דעה משלכם.", fac_enter:"כניסה אל הרשומה", fac_tagline:"On the Record · הטיעון לישראל, מתוך הראיות",
+    fac_go:"ראו אותן נבדקות", fac_rk:"לפני שתגללו", fac_revealh2:"שמעתם את הסיסמאות. השאלה האמיתית היא אם אי פעם בדקתם אותן.", fac_revealp:"כל שורה במסך הקודם היא משהו שכנראה נאמר לכם יותר מפעם אחת. האתר הזה לוקח כל אחת מהן, מנסח אותה בהגינות ובצורתה החזקה ביותר, ומניח לצדה את הראיות, עם מקורות, תאריכים והערה כנה בכל מקום שבו השאלה באמת פתוחה. קראו, ואז גבשו דעה משלכם.", fac_enter:"כניסה אל הרשומה", fac_tagline:"On the Record · הטיעון לישראל, מתוך הראיות",
     hero_eyebrow:"תקציר אינטראקטיבי", hero_h1:"הטיעון לישראל, <em>מתוך הרשומה.</em>", hero_lede:"רוב מה שמופץ על ישראל ברשת הוא טענה שחוזרת על עצמה עד שהיא נשמעת כמו עובדה. זהו מקור עיון פעיל. הפכו את ההאשמות הנפוצות ביותר כדי לקרוא את הראיות שמאחוריהן, גללו שלושת אלפים שנה כדי לראות מי באמת שלט בארץ הזו, ובדקו כל נקודה מול מקור אמיתי. במקום שבו מדובר במחלוקת אמיתית ולא בעובדה מוסכמת, נאמר כך.",
     chips:["איפה הדברים עומדים עכשיו","גללו 3,000 שנה","הפכו את הטענות","צלילות עומק"],
     hero_stamp:"עודכן ב<b>יוני&nbsp;2026</b> &nbsp;&middot;&nbsp; הנתונים העדכניים משתנים, אז ודאו לפני שאתם מצטטים",
@@ -1659,9 +1673,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   I18N.es = {
     nav_claims:"Las acusaciones", nav_situation:"Situación", nav_timeline:"Cronología", nav_origins:"Orígenes", nav_wars:"Guerras", nav_watch:"Ver", nav_verify:"Verificar", nav_dives:"Análisis", nav_sources:"Fuentes",
-    fac_brand:"Palestina Libre · La Verdad Completa", fac_skip:"Saltar intro", fac_kicker:"Lo que no quieren que veas", fac_title:"La verdad completa<br>sobre Palestina", fac_sub:"Los titulares, la historia, la ocupación. Esto es lo que de verdad ocurre, a plena vista.",
+    fac_brand:"On the Record", fac_skip:"Saltar intro", fac_kicker:"Las afirmaciones, examinadas", fac_title:"Has oído las afirmaciones.<br>Ahora velas comprobadas.", fac_sub:"Una defensa de Israel basada en la evidencia. Toma las acusaciones más comunes, en su forma más fuerte, y pone el registro junto a cada una — con fuentes, fechas y una nota honesta allí donde la cuestión está realmente abierta.",
     slogans:["Israel es un Estado de apartheid.","Detengan el genocidio en Gaza.","Acaben con la ocupación colonial de colonos.","Del río al mar, Palestina será libre.","Gaza es la mayor prisión al aire libre del mundo.","Decenas de miles de civiles inocentes, asesinados."],
-    fac_go:"Muéstrame la verdad completa", fac_rk:"Antes de seguir", fac_revealh2:"Has oído las consignas. La verdadera pregunta es si alguna vez las has comprobado.", fac_revealp:"Cada línea de la pantalla anterior es algo que probablemente te han dicho más de una vez. Este sitio toma cada una, la expone con justicia en su forma más fuerte y coloca la evidencia al lado, con fuentes, fechas y una nota honesta allí donde la cuestión está realmente abierta. Léelo y luego saca tus propias conclusiones.", fac_enter:"Entrar al registro", fac_tagline:"On the Record · el caso por Israel, argumentado desde la evidencia",
+    fac_go:"Velas comprobadas", fac_rk:"Antes de seguir", fac_revealh2:"Has oído las consignas. La verdadera pregunta es si alguna vez las has comprobado.", fac_revealp:"Cada línea de la pantalla anterior es algo que probablemente te han dicho más de una vez. Este sitio toma cada una, la expone con justicia en su forma más fuerte y coloca la evidencia al lado, con fuentes, fechas y una nota honesta allí donde la cuestión está realmente abierta. Léelo y luego saca tus propias conclusiones.", fac_enter:"Entrar al registro", fac_tagline:"On the Record · el caso por Israel, argumentado desde la evidencia",
     hero_eyebrow:"Un informe interactivo", hero_h1:"El caso por Israel, <em>argumentado desde el registro.</em>", hero_lede:"Casi todo lo que circula sobre Israel en internet es una afirmación que se repite hasta que suena como un hecho. Esto es una referencia práctica. Da vuelta las acusaciones más comunes para leer la evidencia detrás de ellas, recorre tres mil años para ver quién gobernó realmente esta tierra y contrasta cada punto con una fuente real. Donde algo es una disputa genuina y no un hecho establecido, así se dice.",
     chips:["Cómo están las cosas ahora","Recorre 3000 años","Da vuelta las acusaciones","Análisis"],
     hero_stamp:"Actualizado en <b>junio&nbsp;de&nbsp;2026</b> &nbsp;&middot;&nbsp; las cifras actuales cambian, así que verifica antes de citar",
@@ -1679,9 +1693,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   I18N.fr = {
     nav_claims:"Les accusations", nav_situation:"Situation", nav_timeline:"Chronologie", nav_origins:"Origines", nav_wars:"Guerres", nav_watch:"Vidéos", nav_verify:"Vérifier", nav_dives:"Analyses", nav_sources:"Sources",
-    fac_brand:"Palestine Libre · Toute la Vérité", fac_skip:"Passer l'intro", fac_kicker:"Ce qu'ils ne veulent pas que vous voyiez", fac_title:"Toute la vérité<br>sur la Palestine", fac_sub:"Les gros titres, l'histoire, l'occupation. Voici ce qui se passe vraiment, au grand jour.",
+    fac_brand:"On the Record", fac_skip:"Passer l'intro", fac_kicker:"Les affirmations, examinées", fac_title:"Vous avez entendu les affirmations.<br>Voyez-les maintenant vérifiées.", fac_sub:"Une défense d'Israël fondée sur les preuves. Elle prend les accusations les plus courantes, dans leur forme la plus forte, et place le dossier à côté de chacune — avec sources, dates et une note honnête là où la question reste vraiment ouverte.",
     slogans:["Israël est un État d'apartheid.","Arrêtez le génocide à Gaza.","Mettez fin à l'occupation coloniale de peuplement.","De la rivière à la mer, la Palestine sera libre.","Gaza est la plus grande prison à ciel ouvert du monde.","Des dizaines de milliers de civils innocents, tués."],
-    fac_go:"Montrez-moi toute la vérité", fac_rk:"Avant de faire défiler", fac_revealh2:"Vous avez entendu les slogans. La vraie question est de savoir si vous les avez déjà vérifiés.", fac_revealp:"Chaque ligne de l'écran précédent est quelque chose qu'on vous a probablement dit plus d'une fois. Ce site reprend chacune d'elles, l'énonce honnêtement sous sa forme la plus forte et place les preuves à côté, avec sources, dates et une note franche partout où la question reste réellement ouverte. Lisez, puis forgez-vous votre propre opinion.", fac_enter:"Entrer dans le dossier", fac_tagline:"On the Record · la cause d'Israël, argumentée à partir des preuves",
+    fac_go:"Voyez-les vérifiées", fac_rk:"Avant de faire défiler", fac_revealh2:"Vous avez entendu les slogans. La vraie question est de savoir si vous les avez déjà vérifiés.", fac_revealp:"Chaque ligne de l'écran précédent est quelque chose qu'on vous a probablement dit plus d'une fois. Ce site reprend chacune d'elles, l'énonce honnêtement sous sa forme la plus forte et place les preuves à côté, avec sources, dates et une note franche partout où la question reste réellement ouverte. Lisez, puis forgez-vous votre propre opinion.", fac_enter:"Entrer dans le dossier", fac_tagline:"On the Record · la cause d'Israël, argumentée à partir des preuves",
     hero_eyebrow:"Un dossier interactif", hero_h1:"La cause d'Israël, <em>argumentée à partir du dossier.</em>", hero_lede:"La plupart de ce qui circule sur Israël en ligne est une affirmation répétée jusqu'à ressembler à un fait. Ceci est un ouvrage de référence. Retournez les accusations les plus courantes pour lire les preuves qui les sous-tendent, parcourez trois mille ans pour voir qui a réellement gouverné cette terre, et confrontez chaque point à une source réelle. Là où il s'agit d'un véritable différend et non d'un fait établi, c'est précisé.",
     chips:["Où en sont les choses","Parcourez 3000 ans","Retournez les accusations","Analyses"],
     hero_stamp:"Mis à jour en <b>juin&nbsp;2026</b> &nbsp;&middot;&nbsp; les chiffres actuels changent, vérifiez donc avant de citer",
@@ -1699,9 +1713,9 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
   };
   I18N.pt = {
     nav_claims:"As acusações", nav_situation:"Situação", nav_timeline:"Cronologia", nav_origins:"Origens", nav_wars:"Guerras", nav_watch:"Vídeos", nav_verify:"Verificar", nav_dives:"Análises", nav_sources:"Fontes",
-    fac_brand:"Palestina Livre · A Verdade Completa", fac_skip:"Pular introdução", fac_kicker:"O que não querem que você veja", fac_title:"A verdade completa<br>sobre a Palestina", fac_sub:"As manchetes, a história, a ocupação. Aqui está o que realmente acontece, à vista de todos.",
+    fac_brand:"On the Record", fac_skip:"Pular introdução", fac_kicker:"As alegações, examinadas", fac_title:"Você ouviu as alegações.<br>Agora veja-as verificadas.", fac_sub:"Uma defesa de Israel baseada em evidências. Toma as acusações mais comuns, na sua forma mais forte, e coloca o registro ao lado de cada uma — com fontes, datas e uma nota honesta onde a questão está realmente em aberto.",
     slogans:["Israel é um Estado de apartheid.","Parem o genocídio em Gaza.","Acabem com a ocupação colonial de colonos.","Do rio ao mar, a Palestina será livre.","Gaza é a maior prisão a céu aberto do mundo.","Dezenas de milhares de civis inocentes, mortos."],
-    fac_go:"Mostre-me a verdade completa", fac_rk:"Antes de continuar", fac_revealh2:"Você ouviu as palavras de ordem. A verdadeira pergunta é se você já as verificou.", fac_revealp:"Cada linha da tela anterior é algo que provavelmente já lhe disseram mais de uma vez. Este site pega cada uma, a apresenta de forma justa na sua versão mais forte e coloca as evidências ao lado, com fontes, datas e uma nota honesta onde quer que a questão esteja realmente em aberto. Leia e então forme a sua própria opinião.", fac_enter:"Entrar no registro", fac_tagline:"On the Record · a defesa de Israel, argumentada a partir das evidências",
+    fac_go:"Veja-as verificadas", fac_rk:"Antes de continuar", fac_revealh2:"Você ouviu as palavras de ordem. A verdadeira pergunta é se você já as verificou.", fac_revealp:"Cada linha da tela anterior é algo que provavelmente já lhe disseram mais de uma vez. Este site pega cada uma, a apresenta de forma justa na sua versão mais forte e coloca as evidências ao lado, com fontes, datas e uma nota honesta onde quer que a questão esteja realmente em aberto. Leia e então forme a sua própria opinião.", fac_enter:"Entrar no registro", fac_tagline:"On the Record · a defesa de Israel, argumentada a partir das evidências",
     hero_eyebrow:"Um dossiê interativo", hero_h1:"A defesa de Israel, <em>argumentada a partir do registro.</em>", hero_lede:"Quase tudo o que circula sobre Israel na internet é uma afirmação repetida até soar como um fato. Isto é uma referência prática. Vire as acusações mais comuns para ler as evidências por trás delas, percorra três mil anos para ver quem de fato governou esta terra e confronte cada ponto com uma fonte real. Onde algo é uma disputa genuína e não um fato estabelecido, isso é dito.",
     chips:["Como as coisas estão agora","Percorra 3000 anos","Vire as acusações","Análises"],
     hero_stamp:"Atualizado em <b>junho&nbsp;de&nbsp;2026</b> &nbsp;&middot;&nbsp; os números atuais mudam, então verifique antes de citar",
