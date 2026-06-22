@@ -317,6 +317,14 @@
   .wc-row{display:flex;gap:12px;font-size:15.5px;color:#27313f;}
   .wc-row b{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);flex-shrink:0;width:84px;padding-top:3px;}
   @media (max-width:760px){ .wc-row b{width:64px;} }
+  .wc-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px;}
+  .wc-fact{display:flex;flex-direction:column;gap:3px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 14px;}
+  .wc-fact b{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+  .wc-fact span{font-size:13.5px;color:#27313f;font-weight:500;line-height:1.35;}
+  .wc-legacy{margin-top:16px;padding-top:15px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:6px;}
+  .wc-legacy b{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-text);font-weight:500;}
+  .wc-legacy span{font-family:"Fraunces",serif;font-size:16.5px;font-style:italic;color:var(--ink);line-height:1.4;}
+  [dir="rtl"] .wc-legacy{border-left:0;}
   /* colorful section backgrounds */
   .hero{background:linear-gradient(180deg,#eaf0fb 0%,#f3f6fb 58%,var(--paper) 100%);}
   .claims{background:linear-gradient(180deg,#e3ebfa 0%,#eef3fb 100%);}
@@ -430,8 +438,21 @@
   @media (max-width:600px){ .flip{height:500px;} .carousel-nav{gap:13px;} }
   /* language switcher */
   .bar-right{display:flex;align-items:center;gap:18px;}
-  .langsel{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.03em;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:7px;padding:7px 8px;cursor:pointer;line-height:1;max-width:148px;}
-  .langsel:hover{border-color:var(--tekhelet);}
+  .langsel{position:relative;}
+  .langsel-btn{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.04em;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer;line-height:1;transition:border-color .15s;}
+  .langsel-btn:hover{border-color:var(--tekhelet);}
+  .langsel-btn .chev{color:var(--muted);transition:transform .2s;}
+  .langsel-btn[aria-expanded="true"] .chev{transform:rotate(180deg);}
+  .flag{width:22px;height:15px;border-radius:2px;overflow:hidden;display:inline-block;flex-shrink:0;box-shadow:0 0 0 1px rgba(14,27,46,.14);}
+  .flag svg{display:block;width:100%;height:100%;}
+  .langmenu{position:absolute;top:calc(100% + 8px);right:0;margin:0;padding:6px;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:11px;box-shadow:0 16px 38px -12px rgba(14,27,46,.32);z-index:70;min-width:180px;}
+  .langmenu[hidden]{display:none;}
+  .langmenu li{display:flex;align-items:center;gap:11px;padding:9px 11px;border-radius:7px;cursor:pointer;font-size:13.5px;color:var(--ink);white-space:nowrap;transition:background .12s;}
+  .langmenu li .lname{font-family:"IBM Plex Sans",sans-serif;}
+  .langmenu li:hover{background:var(--paper);}
+  .langmenu li:focus-visible{outline:2px solid var(--tekhelet);outline-offset:-2px;}
+  .langmenu li.on{color:var(--tekhelet);font-weight:600;background:rgba(31,95,166,.08);}
+  [dir="rtl"] .langmenu{right:auto;left:0;}
   /* right-to-left support */
   [dir="rtl"]{text-align:right;}
   [dir="rtl"] .deck,[dir="rtl"] .scrubber,[dir="rtl"] .track,[dir="rtl"] .scrub,[dir="rtl"] .ticks,[dir="rtl"] .ctrl-bar,[dir="rtl"] .scrubrow,[dir="rtl"] .scrub-wrap{direction:ltr;}
@@ -452,6 +473,14 @@
   footer .fine{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.05em;color:#6f8094;margin-top:22px;line-height:1.8;}
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
+  /* interaction & depth polish */
+  .face{box-shadow:0 14px 32px -20px rgba(14,27,46,.34);}
+  .warcard,.eracard{box-shadow:0 12px 28px -20px rgba(14,27,46,.22);}
+  .vcard{transition:border-color .18s ease;}
+  .vcard:hover{border-color:var(--gold);}
+  .case{transition:border-color .18s ease;}
+  .case:hover{border-color:rgba(232,133,127,.55);}
+  .chip{box-shadow:0 1px 0 rgba(14,27,46,.02);}
   :focus-visible{outline:2px solid var(--tekhelet);outline-offset:3px;border-radius:3px;}
   @media (max-width:820px){ .method .grid{grid-template-columns:1fr;gap:38px;} }
   @media (max-width:760px){
@@ -599,14 +628,14 @@
         <a href="#dives">Deep dives</a>
         <a href="#method">Sources</a>
       </nav>
-      <select class="langsel" id="langSel" aria-label="Language / اللغة / שפה / Idioma">
-        <option value="en">EN&nbsp;·&nbsp;English</option>
-        <option value="ar">AR&nbsp;·&nbsp;العربية</option>
-        <option value="he">HE&nbsp;·&nbsp;עברית</option>
-        <option value="es">ES&nbsp;·&nbsp;Español</option>
-        <option value="fr">FR&nbsp;·&nbsp;Français</option>
-        <option value="pt">PT&nbsp;·&nbsp;Português</option>
-      </select>
+      <div class="langsel" id="langSwitch">
+        <button type="button" class="langsel-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+          <span class="flag" id="langFlag"></span>
+          <span class="langcode" id="langCode">EN</span>
+          <svg class="chev" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <ul class="langmenu" id="langMenu" role="listbox" aria-label="Language" hidden></ul>
+      </div>
       <button class="menu-btn" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -804,10 +833,15 @@
             <span class="wc-tag win" id="wcTag">Israel survived</span>
           </div>
           <h3 class="wc-name" id="wcName">War of Independence</h3>
+          <div class="wc-facts">
+            <div class="wc-fact"><b id="wcWhoL">Combatants</b><span id="wcWho">Israel vs. Egypt, Jordan, Syria, Lebanon and Iraq</span></div>
+            <div class="wc-fact"><b id="wcLenL">Duration</b><span id="wcLen">~10 months</span></div>
+          </div>
           <div class="wc-rows">
             <div class="wc-row"><b>Started by</b><span id="wcStarted">Five Arab states invaded the day after Israel declared independence, having rejected the UN partition plan.</span></div>
             <div class="wc-row"><b>How it ended</b><span id="wcEnded">Armistice agreements in 1949. Israel survived and held more than the partition map had offered. Egypt kept Gaza, Jordan kept the West Bank.</span></div>
           </div>
+          <div class="wc-legacy"><b id="wcLegL">Significance</b><span id="wcLegacy">Set Israel's first borders, beyond the partition map, and created two refugee peoples — Palestinian and Jewish.</span></div>
         </div>
       </div>
     </div>
@@ -1327,38 +1361,60 @@ var CLAIMS = [
 <script>
 var WARS=[
   {y:"1948\u201349",name:"War of Independence",cls:"win",tag:"Israel survived",
+   who:"Israel vs. Egypt, Jordan, Syria, Lebanon and Iraq",length:"~10 months",
    started:"Five Arab states invaded the day after Israel declared independence, having rejected the UN partition plan.",
-   ended:"Armistice agreements in 1949. Israel survived and held more than the partition map had offered. Egypt kept Gaza, Jordan kept the West Bank."},
+   ended:"Armistice agreements in 1949. Israel survived and held more than the partition map had offered. Egypt kept Gaza, Jordan kept the West Bank.",
+   legacy:"Set Israel's first borders, beyond the partition map, and created two refugee peoples \u2014 Palestinian and Jewish."},
   {y:"1956",name:"Sinai War (Suez Crisis)",cls:"truce",tag:"Withdrawal under pressure",
+   who:"Israel, Britain and France vs. Egypt",length:"~1 week",
    started:"After Egypt blockaded the Straits of Tiran and backed waves of cross-border raids, Israel struck first, alongside Britain and France.",
-   ended:"Israel took Sinai, then withdrew in 1957 under US and UN pressure. A UN force moved in and the strait reopened."},
+   ended:"Israel took Sinai, then withdrew in 1957 under US and UN pressure. A UN force moved in and the strait reopened.",
+   legacy:"Reopened the Straits of Tiran and put UN peacekeepers in Sinai, but won Israel no lasting land."},
   {y:"1967",name:"Six-Day War",cls:"win",tag:"Decisive Israeli victory",
+   who:"Israel vs. Egypt, Jordan and Syria",length:"6 days",
    started:"After Egypt closed the Straits of Tiran (an act of war), expelled the UN peacekeepers, and massed its army on the border while its broadcasts promised Israel's destruction, Israel launched a preemptive strike. Jordan and Syria then joined in.",
-   ended:"A decisive victory in six days. Israel captured Sinai and Gaza, the West Bank and East Jerusalem, and the Golan Heights."},
+   ended:"A decisive victory in six days. Israel captured Sinai and Gaza, the West Bank and East Jerusalem, and the Golan Heights.",
+   legacy:"Israel took Sinai, Gaza, the West Bank, East Jerusalem and the Golan \u2014 the territories at the heart of the conflict ever since."},
   {y:"1969\u201370",name:"War of Attrition",cls:"truce",tag:"Inconclusive ceasefire",
+   who:"Israel vs. Egypt",length:"~17 months",
    started:"Egypt, with a grinding artillery and air war along the Suez Canal.",
-   ended:"A ceasefire in 1970. The border did not move."},
+   ended:"A ceasefire in 1970. The border did not move.",
+   legacy:"A static artillery war along the Suez Canal that ended right where it began."},
   {y:"1973",name:"Yom Kippur War",cls:"win",tag:"Repelled; led to peace with Egypt",
+   who:"Israel vs. Egypt and Syria",length:"~19 days",
    started:"Egypt and Syria, with a surprise attack on the holiest day in the Jewish calendar, aiming to retake Sinai and the Golan.",
-   ended:"After heavy early losses Israel pushed both armies back. The war opened the road to the 1979 peace treaty with Egypt and the return of Sinai."},
+   ended:"After heavy early losses Israel pushed both armies back. The war opened the road to the 1979 peace treaty with Egypt and the return of Sinai.",
+   legacy:"A costly surprise attack Israel turned back \u2014 the shock that opened the road to peace with Egypt."},
   {y:"1982",name:"First Lebanon War",cls:"truce",tag:"PLO expelled; long aftermath",
+   who:"Israel vs. the PLO and Syria",length:"war ~3 months; zone to 2000",
    started:"After years of PLO attacks from Lebanon and an assassination attempt on Israel's ambassador, Israel invaded to drive the PLO out.",
-   ended:"The PLO was forced out of Lebanon. Israel then held a southern security zone for years, in a costly and politically divisive aftermath."},
+   ended:"The PLO was forced out of Lebanon. Israel then held a southern security zone for years, in a costly and politically divisive aftermath.",
+   legacy:"Drove the PLO from Lebanon, but pulled Israel into an 18-year hold on a southern security zone."},
   {y:"1987\u201393",name:"First Intifada",cls:"truce",tag:"Led to the Oslo talks",
+   who:"Israel vs. a Palestinian uprising",length:"~6 years",
    started:"A Palestinian uprising across the West Bank and Gaza.",
-   ended:"It wound down into the Oslo peace process in 1993."},
+   ended:"It wound down into the Oslo peace process in 1993.",
+   legacy:"A mass uprising that pushed the conflict onto the world stage and led into the Oslo process."},
   {y:"2000\u201305",name:"Second Intifada",cls:"truce",tag:"Subsided; Gaza withdrawal",
+   who:"Israel vs. Palestinian militant factions",length:"~5 years",
    started:"A Palestinian uprising after the 2000 Camp David talks collapsed, marked by waves of suicide bombings inside Israel.",
-   ended:"It gradually subsided. Israel built the West Bank barrier and withdrew from Gaza in 2005."},
+   ended:"It gradually subsided. Israel built the West Bank barrier and withdrew from Gaza in 2005.",
+   legacy:"Suicide bombings, the West Bank barrier, and the 2005 withdrawal from Gaza."},
   {y:"2006",name:"Second Lebanon War",cls:"truce",tag:"Inconclusive ceasefire",
+   who:"Israel vs. Hezbollah",length:"34 days",
    started:"Hezbollah, with a cross-border raid that killed and captured Israeli soldiers.",
-   ended:"Thirty-four days of fighting, then a UN-brokered ceasefire under Resolution 1701. Inconclusive."},
+   ended:"Thirty-four days of fighting, then a UN-brokered ceasefire under Resolution 1701. Inconclusive.",
+   legacy:"An inconclusive war that left Hezbollah in place under UN Resolution 1701."},
   {y:"2008\u20132021",name:"The Gaza rounds",cls:"truce",tag:"Repeated short ceasefires",
+   who:"Israel vs. Hamas and Gaza factions",length:"four rounds, 13 years",
    started:"Several rounds with Hamas (2008\u201309, 2012, 2014, 2021), generally touched off by rocket fire and escalation out of Gaza.",
-   ended:"Each one closed with a short ceasefire that left the underlying conflict exactly where it was."},
+   ended:"Each one closed with a short ceasefire that left the underlying conflict exactly where it was.",
+   legacy:"Short wars in 2008\u201309, 2012, 2014 and 2021, each ending in a ceasefire that settled nothing."},
   {y:"2023\u2013now",name:"The Gaza War",cls:"ongoing",tag:"Fragile ceasefire since 2025",
+   who:"Israel vs. Hamas and allied factions",length:"~2 years; truce since 2025",
    started:"Hamas's cross-border massacre on 7 October 2023, the deadliest day for Jews since the Holocaust.",
-   ended:"Not over. A fragile ceasefire has held since October 2025. See the situation report for where it stands now."}
+   ended:"Not over. A fragile ceasefire has held since October 2025. See the situation report for where it stands now.",
+   legacy:"Began with the October 7 massacre, the deadliest day for Jews since the Holocaust, and remains unresolved."}
 ];
 (function(){
   var track=document.getElementById('warTrack'), fill=document.getElementById('warFill'),
@@ -1380,6 +1436,12 @@ var WARS=[
     var LB=window.LABELS||{}; countEl.textContent=(LB.war||'War')+' '+(i+1)+' '+(LB.of||'of')+' '+N;
     document.getElementById('wcYear').textContent=(window.__locYear?window.__locYear(w.y):w.y);
     document.getElementById('wcName').textContent=w.name;
+    document.getElementById('wcWhoL').textContent=LB.combatants||'Combatants';
+    document.getElementById('wcLenL').textContent=LB.duration||'Duration';
+    document.getElementById('wcLegL').textContent=LB.significance||'Significance';
+    document.getElementById('wcWho').textContent=w.who||'';
+    document.getElementById('wcLen').textContent=w.length||'';
+    document.getElementById('wcLegacy').textContent=w.legacy||'';
     document.getElementById('wcStarted').textContent=w.started;
     document.getElementById('wcEnded').textContent=w.ended;
     var tg=document.getElementById('wcTag'); tg.textContent=w.tag; tg.className='wc-tag '+w.cls;
@@ -1580,12 +1642,12 @@ var WARS=[
   ];
   var RTL = {ar:1, he:1};
   var LABELS = {
-    en:{claimword:"Claim", tapcard:"Tap for the record", recordshows:"What the record shows", era:"Era", war:"War", of:"of", ruledby:"Ruled by"},
-    ar:{claimword:"ادعاء", tapcard:"اقلب للاطّلاع على السجل", recordshows:"ما يُظهره السجل", era:"الحقبة", war:"الحرب", of:"من", ruledby:"حكمها"},
-    he:{claimword:"טענה", tapcard:"הקישו לרשומה", recordshows:"מה שהרשומה מראה", era:"תקופה", war:"מלחמה", of:"מתוך", ruledby:"נשלטה בידי"},
-    es:{claimword:"Afirmación", tapcard:"Toca para ver el registro", recordshows:"Lo que muestra el registro", era:"Era", war:"Guerra", of:"de", ruledby:"Gobernada por"},
-    fr:{claimword:"Accusation", tapcard:"Touchez pour voir le dossier", recordshows:"Ce que montre le dossier", era:"Ère", war:"Guerre", of:"sur", ruledby:"Gouvernée par"},
-    pt:{claimword:"Acusação", tapcard:"Toque para ver o registro", recordshows:"O que o registro mostra", era:"Era", war:"Guerra", of:"de", ruledby:"Governada por"}
+    en:{claimword:"Claim", tapcard:"Tap for the record", recordshows:"What the record shows", era:"Era", war:"War", of:"of", ruledby:"Ruled by", combatants:"Combatants", duration:"Duration", significance:"Significance"},
+    ar:{claimword:"ادعاء", tapcard:"اقلب للاطّلاع على السجل", recordshows:"ما يُظهره السجل", era:"الحقبة", war:"الحرب", of:"من", ruledby:"حكمها", combatants:"الأطراف", duration:"المدة", significance:"الأهمية"},
+    he:{claimword:"טענה", tapcard:"הקישו לרשומה", recordshows:"מה שהרשומה מראה", era:"תקופה", war:"מלחמה", of:"מתוך", ruledby:"נשלטה בידי", combatants:"הצדדים", duration:"משך", significance:"משמעות"},
+    es:{claimword:"Afirmación", tapcard:"Toca para ver el registro", recordshows:"Lo que muestra el registro", era:"Era", war:"Guerra", of:"de", ruledby:"Gobernada por", combatants:"Contendientes", duration:"Duración", significance:"Importancia"},
+    fr:{claimword:"Accusation", tapcard:"Touchez pour voir le dossier", recordshows:"Ce que montre le dossier", era:"Ère", war:"Guerre", of:"sur", ruledby:"Gouvernée par", combatants:"Belligérants", duration:"Durée", significance:"Portée"},
+    pt:{claimword:"Acusação", tapcard:"Toque para ver o registro", recordshows:"O que o registro mostra", era:"Era", war:"Guerra", of:"de", ruledby:"Governada por", combatants:"Contendores", duration:"Duração", significance:"Importância"}
   };
   Object.assign(LABELS.en,{bce:"BCE", ce:"CE", circa:"c.", nowword:"now", today:"Today"});
   Object.assign(LABELS.ar,{bce:"ق.م", ce:"م", circa:"نحو", nowword:"الآن", today:"اليوم"});
@@ -1822,6 +1884,81 @@ var WARS=[
     {name:"A Guerra de Gaza", tag:"Cessar-fogo frágil desde 2025", started:"O massacre transfronteiriço do Hamas em 7 de outubro de 2023, o dia mais letal para os judeus desde o Holocausto.", ended:"Não terminou. Um cessar-fogo frágil se mantém desde outubro de 2025. Veja o relatório de situação para saber em que ponto está agora."}
   ];
   /* WARSPACK */
+  /* extra war fields (who / length / legacy), merged into the per-language packs */
+  (function(){
+    var WX = {
+      he:[
+        {who:"ישראל מול מצרים, ירדן, סוריה, לבנון ועיראק",length:"~10 חודשים",legacy:"קבעה את גבולותיה הראשונים של ישראל, מעבר למפת החלוקה, ויצרה שני עמי פליטים — פלסטיני ויהודי."},
+        {who:"ישראל, בריטניה וצרפת מול מצרים",length:"~שבוע",legacy:"פתחה מחדש את מצרי טיראן והציבה כוח או״ם בסיני, אך לא הקנתה לישראל שטח של קבע."},
+        {who:"ישראל מול מצרים, ירדן וסוריה",length:"6 ימים",legacy:"ישראל כבשה את סיני, עזה, הגדה המערבית, מזרח ירושלים והגולן — השטחים שבלב הסכסוך מאז."},
+        {who:"ישראל מול מצרים",length:"~17 חודשים",legacy:"מלחמת ארטילריה סטטית לאורך תעלת סואץ שהסתיימה בדיוק היכן שהחלה."},
+        {who:"ישראל מול מצרים וסוריה",length:"~19 ימים",legacy:"מתקפת פתע יקרה שישראל הדפה — ההלם שפתח את הדרך לשלום עם מצרים."},
+        {who:"ישראל מול אש״ף וסוריה",length:"מלחמה ~3 חודשים; רצועה עד 2000",legacy:"גירשה את אש״ף מלבנון, אך גררה את ישראל ל-18 שנות אחיזה ברצועת ביטחון בדרום."},
+        {who:"ישראל מול התקוממות פלסטינית",length:"~6 שנים",legacy:"התקוממות המונית שהעלתה את הסכסוך לבמה העולמית והובילה לתהליך אוסלו."},
+        {who:"ישראל מול פלגים פלסטינים חמושים",length:"~5 שנים",legacy:"פיגועי התאבדות, גדר ההפרדה בגדה והנסיגה מעזה ב-2005."},
+        {who:"ישראל מול חיזבאללה",length:"34 ימים",legacy:"מלחמה ללא הכרעה שהותירה את חיזבאללה במקומו, תחת החלטה 1701 של האו״ם."},
+        {who:"ישראל מול חמאס ופלגים בעזה",length:"ארבעה סבבים, 13 שנים",legacy:"מלחמות קצרות ב-2008–09, 2012, 2014 ו-2021, שכל אחת הסתיימה בהפסקת אש שלא פתרה דבר."},
+        {who:"ישראל מול חמאס ופלגים בני בריתו",length:"~שנתיים; הפוגה מאז 2025",legacy:"החלה בטבח השבעה באוקטובר, היום הקטלני ביותר ליהודים מאז השואה, ועודנה ללא הכרעה."}
+      ],
+      ar:[
+        {who:"إسرائيل ضد مصر والأردن وسوريا ولبنان والعراق",length:"~10 أشهر",legacy:"رسمت حدود إسرائيل الأولى، أبعد من خريطة التقسيم، وأنشأت شعبين من اللاجئين: فلسطيني ويهودي."},
+        {who:"إسرائيل وبريطانيا وفرنسا ضد مصر",length:"~أسبوع",legacy:"أعادت فتح مضائق تيران ووضعت قوة أممية في سيناء، لكنها لم تمنح إسرائيل أرضًا دائمة."},
+        {who:"إسرائيل ضد مصر والأردن وسوريا",length:"6 أيام",legacy:"استولت إسرائيل على سيناء وغزة والضفة الغربية والقدس الشرقية والجولان — الأراضي التي في قلب الصراع منذ ذلك الحين."},
+        {who:"إسرائيل ضد مصر",length:"~17 شهرًا",legacy:"حرب مدفعية ثابتة على طول قناة السويس انتهت حيث بدأت."},
+        {who:"إسرائيل ضد مصر وسوريا",length:"~19 يومًا",legacy:"هجوم مفاجئ مكلف ردّته إسرائيل — الصدمة التي فتحت الطريق إلى السلام مع مصر."},
+        {who:"إسرائيل ضد منظمة التحرير وسوريا",length:"حرب ~3 أشهر؛ شريط حتى 2000",legacy:"طردت منظمة التحرير من لبنان، لكنها أدخلت إسرائيل في 18 عامًا من السيطرة على شريط أمني جنوبي."},
+        {who:"إسرائيل ضد انتفاضة فلسطينية",length:"~6 سنوات",legacy:"انتفاضة شعبية دفعت الصراع إلى المسرح العالمي وأفضت إلى عملية أوسلو."},
+        {who:"إسرائيل ضد فصائل فلسطينية مسلحة",length:"~5 سنوات",legacy:"تفجيرات انتحارية، والجدار الفاصل في الضفة، والانسحاب من غزة عام 2005."},
+        {who:"إسرائيل ضد حزب الله",length:"34 يومًا",legacy:"حرب دون حسم أبقت حزب الله في مكانه، بموجب قرار الأمم المتحدة 1701."},
+        {who:"إسرائيل ضد حماس وفصائل غزة",length:"أربع جولات، 13 عامًا",legacy:"حروب قصيرة في 2008–09 و2012 و2014 و2021، أُغلقت كل منها بهدنة لم تحلّ شيئًا."},
+        {who:"إسرائيل ضد حماس والفصائل الحليفة",length:"~سنتان؛ هدنة منذ 2025",legacy:"بدأت بمجزرة السابع من أكتوبر، أكثر الأيام دموية لليهود منذ المحرقة، ولا تزال دون حل."}
+      ],
+      es:[
+        {who:"Israel vs. Egipto, Jordania, Siria, Líbano e Irak",length:"~10 meses",legacy:"Fijó las primeras fronteras de Israel, más allá del mapa de partición, y creó dos pueblos de refugiados: palestino y judío."},
+        {who:"Israel, Gran Bretaña y Francia vs. Egipto",length:"~1 semana",legacy:"Reabrió los estrechos de Tirán y puso cascos azules en el Sinaí, pero no dio a Israel territorio duradero."},
+        {who:"Israel vs. Egipto, Jordania y Siria",length:"6 días",legacy:"Israel tomó el Sinaí, Gaza, Cisjordania, Jerusalén Este y el Golán: los territorios en el centro del conflicto desde entonces."},
+        {who:"Israel vs. Egipto",length:"~17 meses",legacy:"Una guerra de artillería estática junto al Canal de Suez que terminó donde empezó."},
+        {who:"Israel vs. Egipto y Siria",length:"~19 días",legacy:"Un ataque sorpresa costoso que Israel revirtió: el golpe que abrió el camino a la paz con Egipto."},
+        {who:"Israel vs. la OLP y Siria",length:"guerra ~3 meses; zona hasta 2000",legacy:"Expulsó a la OLP del Líbano, pero metió a Israel en 18 años de control de una zona de seguridad al sur."},
+        {who:"Israel vs. un levantamiento palestino",length:"~6 años",legacy:"Un levantamiento masivo que llevó el conflicto al escenario mundial y desembocó en el proceso de Oslo."},
+        {who:"Israel vs. facciones armadas palestinas",length:"~5 años",legacy:"Atentados suicidas, la barrera de Cisjordania y la retirada de Gaza en 2005."},
+        {who:"Israel vs. Hezbolá",length:"34 días",legacy:"Una guerra sin resolución que dejó a Hezbolá en su sitio bajo la Resolución 1701 de la ONU."},
+        {who:"Israel vs. Hamás y facciones de Gaza",length:"cuatro rondas, 13 años",legacy:"Guerras cortas en 2008-09, 2012, 2014 y 2021, cada una cerrada con un alto el fuego que no resolvió nada."},
+        {who:"Israel vs. Hamás y facciones aliadas",length:"~2 años; tregua desde 2025",legacy:"Comenzó con la masacre del 7 de octubre, el día más letal para los judíos desde el Holocausto, y sigue sin resolverse."}
+      ],
+      fr:[
+        {who:"Israël c. Égypte, Jordanie, Syrie, Liban et Irak",length:"~10 mois",legacy:"A fixé les premières frontières d'Israël, au-delà du plan de partage, et créé deux peuples de réfugiés : palestinien et juif."},
+        {who:"Israël, Royaume-Uni et France c. Égypte",length:"~1 semaine",legacy:"A rouvert les détroits de Tiran et placé des casques bleus au Sinaï, sans gain territorial durable pour Israël."},
+        {who:"Israël c. Égypte, Jordanie et Syrie",length:"6 jours",legacy:"Israël prend le Sinaï, Gaza, la Cisjordanie, Jérusalem-Est et le Golan — les territoires au cœur du conflit depuis."},
+        {who:"Israël c. Égypte",length:"~17 mois",legacy:"Une guerre d'artillerie statique le long du canal de Suez, terminée là où elle avait commencé."},
+        {who:"Israël c. Égypte et Syrie",length:"~19 jours",legacy:"Une attaque-surprise coûteuse repoussée par Israël — le choc qui ouvrit la voie à la paix avec l'Égypte."},
+        {who:"Israël c. l'OLP et la Syrie",length:"guerre ~3 mois; zone jusqu'en 2000",legacy:"A chassé l'OLP du Liban, mais a entraîné Israël dans 18 ans d'occupation d'une zone de sécurité au sud."},
+        {who:"Israël c. un soulèvement palestinien",length:"~6 ans",legacy:"Un soulèvement de masse qui porta le conflit sur la scène mondiale et mena au processus d'Oslo."},
+        {who:"Israël c. des factions armées palestiniennes",length:"~5 ans",legacy:"Attentats-suicides, barrière de Cisjordanie et retrait de Gaza en 2005."},
+        {who:"Israël c. le Hezbollah",length:"34 jours",legacy:"Une guerre sans issue qui laissa le Hezbollah en place, sous la résolution 1701 de l'ONU."},
+        {who:"Israël c. le Hamas et des factions de Gaza",length:"quatre cycles, 13 ans",legacy:"Guerres courtes en 2008-09, 2012, 2014 et 2021, chacune close par un cessez-le-feu sans rien régler."},
+        {who:"Israël c. le Hamas et ses factions alliées",length:"~2 ans; trêve depuis 2025",legacy:"Déclenchée par le massacre du 7 octobre, le jour le plus meurtrier pour les Juifs depuis la Shoah, et toujours non résolue."}
+      ],
+      pt:[
+        {who:"Israel vs. Egito, Jordânia, Síria, Líbano e Iraque",length:"~10 meses",legacy:"Fixou as primeiras fronteiras de Israel, além do mapa da partilha, e criou dois povos de refugiados: palestino e judeu."},
+        {who:"Israel, Reino Unido e França vs. Egito",length:"~1 semana",legacy:"Reabriu os estreitos de Tiran e pôs capacetes azuis no Sinai, mas não deu a Israel território duradouro."},
+        {who:"Israel vs. Egito, Jordânia e Síria",length:"6 dias",legacy:"Israel tomou o Sinai, Gaza, a Cisjordânia, Jerusalém Oriental e o Golã — os territórios no centro do conflito desde então."},
+        {who:"Israel vs. Egito",length:"~17 meses",legacy:"Uma guerra de artilharia estática ao longo do Canal de Suez que terminou onde começou."},
+        {who:"Israel vs. Egito e Síria",length:"~19 dias",legacy:"Um ataque-surpresa custoso que Israel reverteu — o choque que abriu o caminho para a paz com o Egito."},
+        {who:"Israel vs. a OLP e a Síria",length:"guerra ~3 meses; zona até 2000",legacy:"Expulsou a OLP do Líbano, mas meteu Israel em 18 anos de controlo de uma zona de segurança no sul."},
+        {who:"Israel vs. um levante palestino",length:"~6 anos",legacy:"Um levante em massa que levou o conflito ao palco mundial e desembocou no processo de Oslo."},
+        {who:"Israel vs. facções armadas palestinas",length:"~5 anos",legacy:"Atentados suicidas, a barreira da Cisjordânia e a retirada de Gaza em 2005."},
+        {who:"Israel vs. Hezbollah",length:"34 dias",legacy:"Uma guerra inconclusiva que deixou o Hezbollah no lugar, sob a Resolução 1701 da ONU."},
+        {who:"Israel vs. Hamas e facções de Gaza",length:"quatro rodadas, 13 anos",legacy:"Guerras curtas em 2008-09, 2012, 2014 e 2021, cada uma encerrada com um cessar-fogo que nada resolveu."},
+        {who:"Israel vs. Hamas e facções aliadas",length:"~2 anos; trégua desde 2025",legacy:"Começou com o massacre de 7 de outubro, o dia mais letal para os judeus desde o Holocausto, e continua sem solução."}
+      ]
+    };
+    Object.keys(WX).forEach(function(lg){
+      if(window.WARS_T && window.WARS_T[lg]){
+        WX[lg].forEach(function(x,i){ if(window.WARS_T[lg][i]){ for(var k in x){ window.WARS_T[lg][i][k]=x[k]; } } });
+      }
+    });
+  })();
   function translateData(lang){
     if(typeof ERAS!=='undefined' && ERAS && ERAS.length){
       if(!window.__ERAS_EN){ window.__ERAS_EN=ERAS.map(function(e){return {name:e.name,pill:e.pill,seat:e.seat,body:e.body};}); }
@@ -1830,9 +1967,9 @@ var WARS=[
       if(typeof window.__rerenderEra==='function'){ window.__rerenderEra(); }
     }
     if(typeof WARS!=='undefined' && WARS && WARS.length){
-      if(!window.__WARS_EN){ window.__WARS_EN=WARS.map(function(w){return {name:w.name,tag:w.tag,started:w.started,ended:w.ended};}); }
+      if(!window.__WARS_EN){ window.__WARS_EN=WARS.map(function(w){return {name:w.name,tag:w.tag,started:w.started,ended:w.ended,who:w.who,length:w.length,legacy:w.legacy};}); }
       var WT=(window.WARS_T&&window.WARS_T[lang])||null, WB=window.__WARS_EN;
-      WARS.forEach(function(w,i){ var s=(WT&&WT[i])?WT[i]:WB[i]; if(!s){return;} w.name=s.name!=null?s.name:WB[i].name; w.tag=s.tag!=null?s.tag:WB[i].tag; w.started=s.started!=null?s.started:WB[i].started; w.ended=s.ended!=null?s.ended:WB[i].ended; });
+      WARS.forEach(function(w,i){ var s=(WT&&WT[i])?WT[i]:WB[i]; if(!s){return;} w.name=s.name!=null?s.name:WB[i].name; w.tag=s.tag!=null?s.tag:WB[i].tag; w.started=s.started!=null?s.started:WB[i].started; w.ended=s.ended!=null?s.ended:WB[i].ended; w.who=s.who!=null?s.who:WB[i].who; w.length=s.length!=null?s.length:WB[i].length; w.legacy=s.legacy!=null?s.legacy:WB[i].legacy; });
       if(typeof window.__rerenderWar==='function'){ window.__rerenderWar(); }
     }
   }
@@ -2447,13 +2584,51 @@ var WARS=[
     translateData(lang);
     translateStatic(lang);
     var h=document.documentElement; h.lang=lang; h.setAttribute('dir', RTL[lang]?'rtl':'ltr');
-    var s=document.getElementById('langSel'); if(s&&s.value!==lang){ s.value=lang; }
+    if(window.__setLangUI){ window.__setLangUI(lang); }
     try{ localStorage.setItem('otr_lang', lang); }catch(e){}
   }
   window.__applyLang = apply;
 
-  var sel=document.getElementById('langSel');
-  if(sel){ sel.addEventListener('change', function(){ apply(sel.value); }); }
+  var FLAGS={
+    en:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="4.4"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="2.4"/></svg>',
+    ar:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="24" height="5.34" fill="#00732F"/><rect y="10.66" width="24" height="5.34" fill="#000"/><rect width="6.5" height="16" fill="#FF0000"/></svg>',
+    he:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect y="2" width="24" height="2" fill="#0038b8"/><rect y="12" width="24" height="2" fill="#0038b8"/><path d="M12 5l2.6 4.5h-5.2zM12 11l-2.6-4.5h5.2z" fill="none" stroke="#0038b8" stroke-width=".7"/></svg>',
+    es:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></svg>',
+    fr:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#fff"/><rect width="8" height="16" fill="#0055A4"/><rect x="16" width="8" height="16" fill="#EF4135"/></svg>',
+    pt:'<svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#DA291C"/><rect width="9.6" height="16" fill="#046A38"/><circle cx="9.6" cy="8" r="2.5" fill="#FFE000" stroke="#fff" stroke-width=".5"/><circle cx="9.6" cy="8" r="1" fill="#DA291C"/></svg>'
+  };
+  var LNAMES={en:"English",ar:"العربية",he:"עברית",es:"Español",fr:"Français",pt:"Português"};
+  var LORDER=["en","ar","he","es","fr","pt"];
+  var swBtn=document.getElementById('langBtn'), swMenu=document.getElementById('langMenu'),
+      swFlag=document.getElementById('langFlag'), swCode=document.getElementById('langCode');
+  function closeMenu(){ if(!swMenu){return;} swMenu.hidden=true; if(swBtn){swBtn.setAttribute('aria-expanded','false');} }
+  function openMenu(){ if(!swMenu){return;} swMenu.hidden=false; if(swBtn){swBtn.setAttribute('aria-expanded','true');} var s=swMenu.querySelector('.on')||swMenu.firstElementChild; if(s){s.focus();} }
+  function choose(lg){ apply(lg); closeMenu(); if(swBtn){swBtn.focus();} }
+  if(swMenu){
+    LORDER.forEach(function(lg){
+      var li=document.createElement('li');
+      li.setAttribute('role','option'); li.setAttribute('data-lang',lg); li.setAttribute('aria-selected','false'); li.tabIndex=0;
+      li.innerHTML='<span class="flag">'+(FLAGS[lg]||'')+'</span><span class="lname">'+LNAMES[lg]+'</span>';
+      li.addEventListener('click',function(){ choose(lg); });
+      li.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); choose(lg); }
+        else if(e.key==='ArrowDown'){ e.preventDefault(); if(li.nextElementSibling){li.nextElementSibling.focus();} }
+        else if(e.key==='ArrowUp'){ e.preventDefault(); if(li.previousElementSibling){li.previousElementSibling.focus();} }
+        else if(e.key==='Escape'){ e.preventDefault(); closeMenu(); if(swBtn){swBtn.focus();} }
+      });
+      swMenu.appendChild(li);
+    });
+  }
+  if(swBtn){
+    swBtn.addEventListener('click',function(e){ e.stopPropagation(); if(swMenu.hidden){openMenu();}else{closeMenu();} });
+    swBtn.addEventListener('keydown',function(e){ if(e.key==='ArrowDown'||e.key==='Enter'||e.key===' '){ e.preventDefault(); openMenu(); } });
+  }
+  document.addEventListener('click',function(e){ if(swMenu&&!swMenu.hidden&&!e.target.closest('#langSwitch')){ closeMenu(); } });
+  window.__setLangUI=function(lang){
+    if(swFlag&&FLAGS[lang]){ swFlag.innerHTML=FLAGS[lang]; }
+    if(swCode){ swCode.textContent=(lang||'en').toUpperCase(); }
+    if(swMenu){ Array.prototype.forEach.call(swMenu.children,function(li){ var on=li.getAttribute('data-lang')===lang; li.setAttribute('aria-selected',on?'true':'false'); li.classList.toggle('on',on); }); }
+  };
   var saved='en'; try{ var v=localStorage.getItem('otr_lang'); if(v){ saved=v; } }catch(e){}
   apply(saved);
 })();
