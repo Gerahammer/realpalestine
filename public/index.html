@@ -563,6 +563,24 @@
   footer .footlinks{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;margin-top:14px;line-height:1.9;}
   footer .footlinks a{color:#9fb0c4;text-decoration:none;}
   footer .footlinks a:hover{color:#fff;text-decoration:underline;}
+  /* share bar */
+  footer .share{margin-top:30px;padding-top:26px;border-top:1px solid rgba(255,255,255,.1);}
+  footer .share-lbl{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#7d8ea3;margin-bottom:14px;}
+  footer .share-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .sbtn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#aebccf;cursor:pointer;padding:0;text-decoration:none;transition:transform .16s ease,background .16s ease,border-color .16s ease,color .16s ease;-webkit-tap-highlight-color:transparent;}
+  .sbtn svg{width:19px;height:19px;display:block;}
+  .sbtn:hover,.sbtn:focus-visible{transform:translateY(-3px);color:#fff;border-color:transparent;outline:none;box-shadow:0 8px 18px -8px rgba(0,0,0,.5);}
+  .s-native:hover{background:var(--gold);}
+  .s-wa:hover{background:#25D366;}
+  .s-x:hover{background:#000;border-color:rgba(255,255,255,.55);}
+  .s-fb:hover{background:#1877F2;}
+  .s-tg:hover{background:#229ED9;}
+  .s-in:hover{background:#0A66C2;}
+  .s-rd:hover{background:#FF4500;}
+  .s-em:hover{background:var(--gold);}
+  .s-cp:hover{background:var(--gold);}
+  footer .share-msg{display:inline-block;margin-inline-start:6px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.05em;color:var(--gold);opacity:0;transform:translateY(4px);transition:opacity .2s ease,transform .2s ease;pointer-events:none;}
+  footer .share-msg.show{opacity:1;transform:none;}
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
   .reveal.in{opacity:1;transform:none;}
   /* interaction & depth polish */
@@ -1359,11 +1377,71 @@
   <div class="wrap">
     <div class="wordmark"><span class="dot"></span>On the Record</div>
     <p>An independent educational resource that sets out the case for Israel with sources. It is not tied to any government. Several of the questions it takes on are matters of real and reasonable dispute, and where that is true it says so and points you to the record, so you can judge for yourself.</p>
+    <div class="share">
+      <span class="share-lbl">Share this site</span>
+      <div class="share-row">
+        <button type="button" class="sbtn s-native" data-share="native" title="Share…" aria-label="Share via your device"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 3.98M15.4 6.5l-6.8 3.98"/></svg></button>
+        <a class="sbtn s-wa" data-share="whatsapp" target="_blank" rel="noopener" href="#" title="WhatsApp" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        <a class="sbtn s-x" data-share="x" target="_blank" rel="noopener" href="#" title="X (Twitter)" aria-label="Share on X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <a class="sbtn s-fb" data-share="facebook" target="_blank" rel="noopener" href="#" title="Facebook" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        <a class="sbtn s-tg" data-share="telegram" target="_blank" rel="noopener" href="#" title="Telegram" aria-label="Share on Telegram"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a>
+        <a class="sbtn s-in" data-share="linkedin" target="_blank" rel="noopener" href="#" title="LinkedIn" aria-label="Share on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a class="sbtn s-rd" data-share="reddit" target="_blank" rel="noopener" href="#" title="Reddit" aria-label="Share on Reddit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.482-1.051c-.073-.017-.149-.006-.214.033-.064.038-.11.1-.129.172l-1.654 5.207c-2.757.076-5.25.834-7.077 2.043-.477-.46-1.124-.746-1.84-.746C1.192 9.134 0 10.32 0 11.779c0 1.07.646 1.989 1.568 2.395-.04.246-.06.496-.06.749 0 3.811 4.483 6.912 9.993 6.912 5.511 0 9.994-3.101 9.994-6.912 0-.251-.02-.499-.059-.744.924-.406 1.572-1.327 1.572-2.4zm-17.954 1.155c0-.834.679-1.514 1.513-1.514.833 0 1.512.679 1.512 1.514 0 .833-.679 1.512-1.512 1.512-.834.001-1.513-.679-1.513-1.512zm8.391 4.07c-.717.717-2.227.777-2.677.777-.449 0-1.959-.06-2.676-.777-.107-.107-.107-.281 0-.388.107-.107.281-.107.388 0 .452.452 1.42.613 2.288.613.869 0 1.837-.161 2.289-.613.107-.107.281-.107.388 0 .107.107.107.281 0 .388zm-.246-2.558c-.834 0-1.513-.679-1.513-1.512 0-.834.679-1.514 1.513-1.514.833 0 1.512.679 1.512 1.514 0 .833-.679 1.512-1.512 1.512z"/></svg></a>
+        <a class="sbtn s-em" data-share="email" href="#" title="Email" aria-label="Share by email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 7 9-7"/></svg></a>
+        <button type="button" class="sbtn s-cp" data-share="copy" title="Copy link" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
+        <span class="share-msg" role="status" aria-live="polite"></span>
+      </div>
+    </div>
     <p class="fine">Content current as of June 2026. Casualty figures and legal-case status change, so verify before you cite. Photos via Wikimedia Commons — public domain, or CC BY-SA where credited.</p>
     <p class="footlinks"><a href="/about.html">About &amp; method</a> &middot; <a href="/about.html#other-side">The other side's sources</a> &middot; <a href="/about.html#corrections">Corrections</a></p>
   </div>
 </footer>
 <script>
+/* Social share bar — builds platform intent URLs from the canonical link, wires the
+   native Web Share sheet on mobile, and a clipboard "copy link" with a graceful fallback. */
+(function(){
+  var canon = (document.querySelector('link[rel="canonical"]')||{}).href || (location.origin + '/');
+  var title = (document.querySelector('meta[property="og:title"]')||{}).content || document.title;
+  var desc  = (document.querySelector('meta[name="description"]')||{}).content || title;
+  var U = encodeURIComponent(canon), T = encodeURIComponent(title);
+  var HREFS = {
+    whatsapp: 'https://wa.me/?text=' + encodeURIComponent(title + ' — ' + canon),
+    x:        'https://twitter.com/intent/tweet?text=' + T + '&url=' + U,
+    facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + U,
+    telegram: 'https://t.me/share/url?url=' + U + '&text=' + T,
+    linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + U,
+    reddit:   'https://www.reddit.com/submit?url=' + U + '&title=' + T,
+    email:    'mailto:?subject=' + T + '&body=' + encodeURIComponent(desc + '\n\n' + canon)
+  };
+  document.querySelectorAll('.share-row a[data-share]').forEach(function(a){
+    var u = HREFS[a.getAttribute('data-share')]; if(u){ a.setAttribute('href', u); }
+  });
+  var MSG = {
+    en:{copied:'Link copied',fail:'Press ⌘/Ctrl+C'}, he:{copied:'הקישור הועתק',fail:'העתיקו ידנית'},
+    ar:{copied:'تم نسخ الرابط',fail:'انسخ يدويًا'}, es:{copied:'Enlace copiado',fail:'Copia manual'},
+    fr:{copied:'Lien copié',fail:'Copie manuelle'}, pt:{copied:'Link copiado',fail:'Cópia manual'}
+  };
+  function t(k){ var l=(document.documentElement.lang||'en'); return (MSG[l]||MSG.en)[k]; }
+  var msgEl = document.querySelector('.share-msg');
+  function flash(text){ if(!msgEl){return;} msgEl.textContent=text; msgEl.classList.add('show'); clearTimeout(msgEl._t); msgEl._t=setTimeout(function(){ msgEl.classList.remove('show'); }, 2400); }
+
+  var nat = document.querySelector('.s-native');
+  if(nat){
+    if(navigator.share){
+      nat.addEventListener('click', function(){ navigator.share({title:title,text:desc,url:canon}).catch(function(){}); });
+    } else { nat.style.display='none'; }
+  }
+  var cp = document.querySelector('.s-cp');
+  if(cp){
+    cp.addEventListener('click', function(){
+      function ok(){ flash(t('copied')); }
+      function legacy(){ try{ var ta=document.createElement('textarea'); ta.value=canon; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); ok(); }catch(e){ flash(t('fail')); } }
+      if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(canon).then(ok).catch(legacy); }
+      else { legacy(); }
+    });
+  }
+})();
+
 var GLYPHS = {
   canaan:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 8h10M21 8c0 4-5 4-5 9 0 6 3 8 3 14v5h10v-5c0-6 3-8 3-14 0-5-5-5-5-9"/><path d="M16 17c-3 0-4 3-2 5M32 17c3 0 4 3 2 5"/><path d="M19 36h10"/></svg>`,
   settle:`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 34h36"/><path d="M10 34l8-16 8 16"/><path d="M24 34l7-12 7 12"/><path d="M18 34V22"/></svg>`,
@@ -2393,7 +2471,8 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     or_p5:"מה שבא אחר כך הוא ויכוח ארוך בפני עצמו. ישראל החזירה את כל סיני למצרים במסגרת הסכם השלום של 1979, הוציאה כל חייל ומתנחל אחרון מעזה ב-2005, וחתמה על הסכמי ביניים בשנות התשעים שהעניקו לרשות הפלסטינית שלטון עצמי על רוב הפלסטינים בגדה המערבית. על מעמדה הסופי של הארץ נאבקים מאז.",
     or_cl0:"עזה · מי שלט בה", or_cl1:"הגדה המערבית · מי שלט בה",
     or_nm0:"מצרים", or_nm1:"ישראל", or_nm2:"בשליטת חמאס", or_nm3:"ירדן", or_nm4:"ישראל, עם שלטון עצמי של הרשות הפלסטינית בחלקים מאז שנות התשעים",
-    or_leg:"אפור = מדינה ערבית זרה ששולטת בארץ. כחול = ישראל. זהב = ממשל פלסטיני. באף אחת מהרצועות אין מעולם מדינה עצמאית בשם פלסטין."
+    or_leg:"אפור = מדינה ערבית זרה ששולטת בארץ. כחול = ישראל. זהב = ממשל פלסטיני. באף אחת מהרצועות אין מעולם מדינה עצמאית בשם פלסטין.",
+    foot_share:"שתפו את האתר"
   });
   Object.assign(window.STATIC_T.ar, {
     or_p0:"على مدى أربعة قرون كانت هذه أرضًا عثمانية، لا بلدًا قائمًا بذاته.",
@@ -2406,7 +2485,8 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     or_p5:"ما جاء بعد ذلك جدل طويل بذاته. أعادت إسرائيل كل سيناء إلى مصر بموجب معاهدة السلام لعام 1979، وأخرجت كل جندي ومستوطن من غزة في 2005، ووقّعت اتفاقات مرحلية في التسعينيات منحت السلطة الفلسطينية حكمًا ذاتيًا على معظم الفلسطينيين في الضفة الغربية. وعلى الوضع النهائي للأرض يُتنازَع منذ ذلك الحين.",
     or_cl0:"غزة · من حكمها", or_cl1:"الضفة الغربية · من حكمها",
     or_nm0:"مصر", or_nm1:"إسرائيل", or_nm2:"بحكم حماس", or_nm3:"الأردن", or_nm4:"إسرائيل، مع حكم ذاتي للسلطة الفلسطينية في أجزاء منذ التسعينيات",
-    or_leg:"رمادي = دولة عربية أجنبية تحكم الأرض. أزرق = إسرائيل. ذهبي = حكم فلسطيني. في أيٍّ من الشريطين لا توجد قط دولة مستقلة اسمها فلسطين."
+    or_leg:"رمادي = دولة عربية أجنبية تحكم الأرض. أزرق = إسرائيل. ذهبي = حكم فلسطيني. في أيٍّ من الشريطين لا توجد قط دولة مستقلة اسمها فلسطين.",
+    foot_share:"شارك الموقع"
   });
   Object.assign(window.STATIC_T.es, {
     or_p0:"Durante cuatro siglos esta fue tierra otomana, no un país propio.",
@@ -2419,7 +2499,8 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     or_p5:"Lo que vino después es su propia larga discusión. Israel devolvió todo el Sinaí a Egipto bajo el tratado de paz de 1979, sacó hasta el último soldado y colono de Gaza en 2005, y firmó acuerdos interinos en los años noventa que dieron a la Autoridad Palestina autogobierno sobre la mayoría de los palestinos en Cisjordania. El estatus final de la tierra se disputa desde entonces.",
     or_cl0:"Gaza · quién la gobernó", or_cl1:"Cisjordania · quién la gobernó",
     or_nm0:"Egipto", or_nm1:"Israel", or_nm2:"Gobernada por Hamás", or_nm3:"Jordania", or_nm4:"Israel, con autogobierno de la Autoridad Palestina en partes desde los años noventa",
-    or_leg:"Gris = un Estado árabe extranjero que gobierna la tierra. Azul = Israel. Dorado = gobernanza palestina. En ninguna franja hay jamás un Estado independiente llamado Palestina."
+    or_leg:"Gris = un Estado árabe extranjero que gobierna la tierra. Azul = Israel. Dorado = gobernanza palestina. En ninguna franja hay jamás un Estado independiente llamado Palestina.",
+    foot_share:"Comparte el sitio"
   });
   Object.assign(window.STATIC_T.fr, {
     or_p0:"Pendant quatre siècles, ce fut une terre ottomane, non un pays à part entière.",
@@ -2432,7 +2513,8 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     or_p5:"Ce qui suivit est une longue dispute en soi. Israël rendit tout le Sinaï à l'Égypte au titre du traité de paix de 1979, retira jusqu'au dernier soldat et colon de Gaza en 2005, et signa des accords intérimaires dans les années 1990 qui donnèrent à l'Autorité palestinienne l'autonomie sur la plupart des Palestiniens de Cisjordanie. Le statut final de la terre est disputé depuis lors.",
     or_cl0:"Gaza · qui l'a gouvernée", or_cl1:"La Cisjordanie · qui l'a gouvernée",
     or_nm0:"Égypte", or_nm1:"Israël", or_nm2:"Gouvernée par le Hamas", or_nm3:"Jordanie", or_nm4:"Israël, avec autonomie de l'Autorité palestinienne par endroits depuis les années 1990",
-    or_leg:"Gris = un État arabe étranger qui gouverne la terre. Bleu = Israël. Or = gouvernance palestinienne. Dans aucune des deux bandes il n'existe jamais d'État indépendant appelé Palestine."
+    or_leg:"Gris = un État arabe étranger qui gouverne la terre. Bleu = Israël. Or = gouvernance palestinienne. Dans aucune des deux bandes il n'existe jamais d'État indépendant appelé Palestine.",
+    foot_share:"Partagez le site"
   });
   Object.assign(window.STATIC_T.pt, {
     or_p0:"Por quatro séculos esta foi terra otomana, não um país próprio.",
@@ -2445,7 +2527,8 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     or_p5:"O que veio depois é uma longa discussão em si. Israel devolveu todo o Sinai ao Egito sob o tratado de paz de 1979, retirou até o último soldado e colono de Gaza em 2005, e assinou acordos provisórios nos anos 1990 que deram à Autoridade Palestina autogoverno sobre a maioria dos palestinos na Cisjordânia. O status final da terra é disputado desde então.",
     or_cl0:"Gaza · quem a governou", or_cl1:"A Cisjordânia · quem a governou",
     or_nm0:"Egito", or_nm1:"Israel", or_nm2:"Governada pelo Hamas", or_nm3:"Jordânia", or_nm4:"Israel, com autogoverno da Autoridade Palestina em partes desde os anos 1990",
-    or_leg:"Cinza = um Estado árabe estrangeiro governando a terra. Azul = Israel. Dourado = governança palestina. Em nenhuma das faixas há jamais um Estado independente chamado Palestina."
+    or_leg:"Cinza = um Estado árabe estrangeiro governando a terra. Azul = Israel. Dourado = governança palestina. Em nenhuma das faixas há jamais um Estado independente chamado Palestina.",
+    foot_share:"Compartilhe o site"
   });
   Object.assign(window.STATIC_T.he, {
     ve_cn0:"מקרה 01 · אוקטובר 2023", ve_h0:"בית החולים שלא הופצץ",
@@ -2845,7 +2928,7 @@ function warFlags(codes){ return (codes||[]).map(function(c){ return '<span clas
     ['#warCard .wc-row b','wc_l0','',0],['#warCard .wc-row b','wc_l1','',1],
     ['.band-line','band1'],
     ['.cred','cred0','html',0],['.cred','cred1','html',1],
-    ['footer p:nth-of-type(1)','foot1'],['footer p.fine','foot_fine'],
+    ['footer p:nth-of-type(1)','foot1'],['footer p.fine','foot_fine'],['footer .share-lbl','foot_share'],
     ['#verify .csrc a','csl0','',0],['#verify .csrc a','csl1','',1],['#verify .csrc a','csl2','',2],['#verify .csrc a','csl3','',3],['#verify .csrc a','csl4','',4],['#verify .csrc a','csl5','',5],['#verify .csrc a','csl6','',6],['#verify .csrc a','csl7','',7],
     ['#method .srclist a','msl0','',0],['#method .srclist a','msl1','',1],['#method .srclist a','msl2','',2],['#method .srclist a','msl3','',3],['#method .srclist a','msl4','',4],['#method .srclist a','msl5','',5],['#method .srclist a','msl6','',6]
     /* STATICMAP */
